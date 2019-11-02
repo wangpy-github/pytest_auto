@@ -65,7 +65,6 @@ def my_log(log_name=__file__):
 
 
 
-
 if __name__ == '__main__':
     # log = Logger("demo", "./a.log", "debug")
     # log.logger.info("nihao")
