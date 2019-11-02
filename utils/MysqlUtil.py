@@ -23,8 +23,7 @@ class Mysql():
         )
         self.cursor = self.conn.cursor()
 
-        # 关闭对象
-
+    # 关闭对象
     def __del__(self):
         if self.cursor is not None:
             self.cursor.close()

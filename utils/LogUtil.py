@@ -54,7 +54,7 @@ class Logger():
 # 初始化参数数据
 log_path = Conf.get_log_path()                                  # log目录路径
 current_time = datetime.datetime.now().strftime("%Y-%m-%d")     # 当前时间
-log_extension = ConfigYaml().get_cong_log_extension()           # .log扩展名
+log_extension = ConfigYaml().get_conf_log_extension()           # .log扩展名
 
 logfile = os.path.join(log_path, current_time + log_extension)  # 拼接log文件的路径
 loglevel = ConfigYaml().get_conf_log_level()                    # log等级

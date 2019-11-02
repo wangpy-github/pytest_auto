@@ -1,0 +1,15 @@
+db_01:
+ db_host: "212.64.57.50"
+ db_port: "dev"
+ db_port: "3306"
+ db_user: "Scp3908!op"
+ db_password: "house_dev"
+ db_database: "utf8"
+
+db_02:
+ db_host: "212.64.57.50"
+ db_port: "dev"
+ db_port: "3306"
+ db_user: "Scp3908!op"
+ db_password: "house_dev"
+ db_database: "utf8"
