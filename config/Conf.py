@@ -1,5 +1,4 @@
 import os
-
 from utils.YamlUtil import YamlReader
 
 """
@@ -12,14 +11,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(current_path))
 _config_path = BASE_DIR + os.sep + "config"
 # 定义config.yml文件路径
 _config_file = _config_path + os.sep + "conf.yml"
+# 定义logs文件的路径
+_log_path = BASE_DIR + os.sep + "logs"
 
 
 def get_config_path():
     return _config_path
-
-
 def get_config_file():
     return _config_file
+def get_log_path():
+    return _log_path
 
 
 """
@@ -33,10 +34,19 @@ class ConfigYaml():
     """
     定义一些获取配置文件指定信息的方法
     """
+    # 获取url
     def get_conf_url(self):
         return self.config["BASE"]["test"]["url"]
+    # 获取日志等级
+    def get_conf_log_level(self):
+        return self.config["BASE"]["log_level"]
+    # 获取log文件的扩展名
+    def get_cong_log_extension(self):
+        return self.config["BASE"]["log_extension"]
 
 
 if __name__ == '__main__':
     print(get_config_file())
     print(ConfigYaml().get_conf_url())
+    print(ConfigYaml().get_conf_log_level())
+    print(ConfigYaml().get_cong_log_extension())

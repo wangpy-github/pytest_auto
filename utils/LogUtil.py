@@ -1,4 +1,8 @@
 import logging
+from config import Conf
+import datetime
+from config.Conf import ConfigYaml
+import os
 
 # 定义日志等级的映射
 log_l = {
@@ -43,6 +47,26 @@ class Logger():
             self.logger.addHandler(fh_file)
 
 
+
+"""
+定义对外的方法，参数只有log_name
+"""
+# 初始化参数数据
+log_path = Conf.get_log_path()                                  # log目录路径
+current_time = datetime.datetime.now().strftime("%Y-%m-%d")     # 当前时间
+log_extension = ConfigYaml().get_cong_log_extension()           # .log扩展名
+
+logfile = os.path.join(log_path, current_time + log_extension)  # 拼接log文件的路径
+loglevel = ConfigYaml().get_conf_log_level()                    # log等级
+
+# 对外方法
+def my_log(log_name=__file__):
+    return Logger(log_name=log_name, log_file=logfile, log_level=loglevel).logger
+
+
+
+
 if __name__ == '__main__':
-    log = Logger("demo", "./a.log", "debug")
-    log.logger.info("nihao")
+    # log = Logger("demo", "./a.log", "debug")
+    # log.logger.info("nihao")
+    my_log().info("hello word")

@@ -1,3 +1,7 @@
 BASE:
-  test:
-   url: https://test.hs.wangxuekeji.com/sites/api/?url=
+ # log等级
+ log_level: debug
+ # 扩展名
+ log_extension: .log
+ test:
+  url: https://test.hs.wangxuekeji.com/sites/api/?url=
