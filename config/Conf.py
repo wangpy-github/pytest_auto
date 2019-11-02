@@ -9,12 +9,18 @@ current_path = os.path.abspath(__file__)
 BASE_DIR = os.path.dirname(os.path.dirname(current_path))
 # 定义config目录路径
 _config_path = BASE_DIR + os.sep + "config"
+# 定义data目录路径
+_data_path = BASE_DIR + os.sep + "data"
 # 定义config.yml文件路径
 _config_file = _config_path + os.sep + "conf.yml"
 # 定义db_config.yml文件路径
 _db_config_file = _config_path + os.sep + "db_conf.yml"
-# 定义logs文件的路径
+# 定义logs目录路径
 _log_path = BASE_DIR + os.sep + "logs"
+
+
+def get_data_path():
+    return _data_path
 
 
 def get_config_path():

@@ -1,0 +1,11 @@
+---
+case_name: "获取用户名成功"
+url: "user/info"
+data:
+ json: "{'token': '3933241097da4ef47c9f8e7458dfd5624d116237'}"
+except: 1
+---
+case_name: "获取用户名失败"
+url: "user/info"
+data: "{'json': '{'token': '3933241097da4ef47c9f8e7458dfd5624d11623700000'}'}"
+except: 1

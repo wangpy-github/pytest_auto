@@ -41,10 +41,10 @@ class Request():
     # 定义公共方法
     def request_api(self, url, json=None, data=None, headers=None, cookies=None, method="get"):
         if method == "get":
-            self.log.debug("发生get请求")
+            self.log.debug("发送get请求")
             r = requests.get(url, data=data, headers=headers, cookies=cookies)
         elif method == "post":
-            self.log.debug("发生post请求")
+            self.log.debug("发送post请求")
             r = requests.post(url, json=json, data=data, headers=headers, cookies=cookies)
         code = r.status_code
         try:

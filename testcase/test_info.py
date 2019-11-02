@@ -17,8 +17,7 @@ class Test_Info():
         # 数据库工具类使用
         conn = init_db("db_01")
         r = conn.fetchone("select * from hs_order_info WHERE user_id=8;")
-        print(type(r))
-        print(res)
+        assert r["user_id"] == res["body"]["data"]["id"]
 
 
 if __name__ == '__main__':

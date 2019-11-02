@@ -21,7 +21,7 @@ class Mysql():
             database=database,
             charset=charset
         )
-        self.cursor = self.conn.cursor(cursor=pymysql.cursors.DictCursor)
+        self.cursor = self.conn.cursor(cursor=pymysql.cursors.DictCursor)   # 此处设置默认返回元组改为字典
 
     # 关闭对象
     def __del__(self):
