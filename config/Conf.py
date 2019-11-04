@@ -70,10 +70,20 @@ class ConfigYaml():
     def get_db_config_info(self, db_alise):
         return self.db_config[db_alise]
 
+    # 获取测试用例文件的名称
+    def get_excel_file(self):
+        return self.config["BASE"]["test"]["test_case_file"]
+
+    # 定义获取excel_sheet名称
+    def get_excel_sheet(self):
+        return self.config["BASE"]["test"]["case_sheet"]
+
 
 if __name__ == '__main__':
-    print(get_config_file())
-    print(ConfigYaml().get_conf_url())
-    print(ConfigYaml().get_conf_log_level())
-    print(ConfigYaml().get_conf_log_extension())
-    print(ConfigYaml().get_db_config_info("db_01"))
+    # print(get_config_file())
+    # print(ConfigYaml().get_conf_url())
+    # print(ConfigYaml().get_conf_log_level())
+    # print(ConfigYaml().get_conf_log_extension())
+    # print(ConfigYaml().get_db_config_info("db_01"))
+    print(ConfigYaml().get_excel_file())
+    print(ConfigYaml().get_excel_sheet())

@@ -1,7 +1,9 @@
 BASE:
  # log等级
- log_level: debug
+ log_level: "debug"
  # 扩展名
- log_extension: .log
+ log_extension: ".log"
  test:
-  url: https://test.hs.wangxuekeji.com/sites/api/?url=
+  url: "https://test.hs.wangxuekeji.com/sites/api/?url="
+  test_case_file: "test_data.xlsx"
+  case_sheet: "sheet1"
