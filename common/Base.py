@@ -16,7 +16,7 @@ def init_db(db_alise):
     password = db_info["db_password"]
     database = db_info["db_database"]
     charset = db_info["db_charset"]
-    # 初始化数据库连接对象
+    # 初始化数据库游标对象
     conn = Mysql(host=host,user=user,password=password,database=database,charset=charset,port=port)
     return conn
 
