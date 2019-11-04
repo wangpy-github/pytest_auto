@@ -6,4 +6,4 @@ BASE:
  test:
   url: "https://test.hs.wangxuekeji.com/sites/api/?url="
   test_case_file: "test_data.xlsx"
-  case_sheet: "sheet1"
+  case_sheet: "用户信息"
