@@ -20,4 +20,3 @@ class DataConfig():
     cookies = "cookies"
     status_code = "status_code"
     db_verify = "数据库验证"
-    a = '{}'
