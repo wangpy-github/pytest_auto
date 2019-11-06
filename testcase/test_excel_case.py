@@ -77,8 +77,22 @@ def run_pre(pre_case):
     # 判断headers和cookies是否存在
     header = Base.json_parse(headers)
     cookie = Base.json_parse(cookies)
-    r = run_api(url,method=method,params_type=params_type, header=headers, cookie=cookies, params=params)
+    r = run_api(url,method=method,params_type=params_type, header=header, cookie=cookie, params=params)
     return r
+
+def get_correlation(headers,cookies,pre_res):
+    #验证是否有关联
+    headers_para,cookies_para = Base.params_find(headers,cookies)
+    #有关联，执行前置用例，获取结果
+    if len(headers_para):
+        headers_data = pre_res["body"][headers_para[0]]
+        #结果替换
+        headers = Base.res_sub(headers,headers_data)
+    if len(cookies_para):
+        cookies_data = pre_res["body"][cookies_para[0]]
+        # 结果替换
+        cookies = Base.res_sub(headers, cookies_data)
+    return headers,cookies
 
 
 # 2. 参数化运行测试用例
@@ -104,13 +118,15 @@ class Test_Excel():
             pre_case = Data(case_file,sheet_name).get_case_pre(pre_exec)
             # 2. 执行前置测试用例，获取返回值
             pre_res = run_pre(pre_case)
+            # 获取前置条件中返回的数据
+            headers, cookies = get_correlation(headers, cookies, pre_res)
 
         # 判断headers和cookies是否存在
-        # header = Base.json_parse(headers)
-        # cookie = Base.json_parse(cookies)
+        header = Base.json_parse(headers)
+        cookie = Base.json_parse(cookies)
         # # 请求接口
-        # r = run_api(url, method, params_type, header, cookie, params)
-        # print(r)
+        r = run_api(url, method, params_type, header, cookie, params)
+        print(r)
         # AssertUtil().assert_code(r["code"], expected_code=status_code)
         # AssertUtil().assert_in_body(r["body"], expected_body=except_result)
 

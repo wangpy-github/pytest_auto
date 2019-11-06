@@ -1,6 +1,7 @@
 from config.Conf import ConfigYaml
 from utils.MysqlUtil import Mysql
 import json
+import re
 
 """
 定义公共方法，用来返回mysql连接对象
@@ -28,6 +29,40 @@ def json_parse(data):
     # else:
     #     header = headers
     return json.loads(data) if data else data
+
+def res_find(data,pattern_data='\${(.*)}\$'):
+    """
+    查询
+    :param data: 将被正则匹配的字符串
+    :param pattern_data: 正则表达式
+    """
+    pattern = re.compile(pattern_data)
+    re_res = pattern.findall(data)
+    return re_res
+
+def res_sub(data,replace,pattern_data='\${(.*)}\$'):
+    """
+    替换
+    :param data: 要被替换的字符串
+    :param replace: 被替换的字符串
+    :param pattern_data: 正则表达式
+    :return: 
+    """
+    pattern = re.compile(pattern_data)
+    re_res = pattern.findall(data)
+    if re_res:
+        return re.sub(pattern_data,replace,data)
+    return re_res
+
+def params_find(headers,cookies):
+    if "${" in headers:
+        headers = res_find(headers)
+    if "${" in cookies:
+        cookies = res_find(cookies)
+    return headers,cookies
+
+
+
 
 if __name__ == '__main__':
     print(init_db("db_01"))
