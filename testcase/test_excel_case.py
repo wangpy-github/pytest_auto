@@ -7,6 +7,7 @@ from utils.RequestsUtil import Request
 import json
 import pytest
 from utils.AssertUtil import AssertUtil
+from common import Base
 
 """
 测试用例excel参数化
@@ -21,11 +22,32 @@ from utils.AssertUtil import AssertUtil
     2. 接口请求
 """
 # 1. 初始化信息，可单独定义或者写成配置文件
-# case_file = os.path.join("/data", ConfigYaml().get_excel_file())    # 相对路径，使用pytest会出错
+# case_file = os.path.join("../data", ConfigYaml().get_excel_file())    # 相对路径，使用pytest会出错
 case_file = get_data_path() + os.sep + ConfigYaml().get_excel_file()  # 使用绝对路径
 sheet_name = ConfigYaml().get_excel_sheet()
 data_list = Data(case_file, sheet_name).get_run_data()
 log = my_log()
+
+
+def run_api(url, method, params_type, header=None, cookie=None, params=None):
+    """
+    发送api请求
+    """
+    request = Request()
+    if len(str(params).strip()) is not 0:
+        params = json.loads(params)
+    if str(method).lower() == "get":
+        r = request.get(url, headers=header, cookies=cookie)
+    elif str(method).lower() == "post":
+        if str(params_type).lower() == "form_data":
+            r = request.post(url, data=params, headers=header, cookies=cookie)
+        elif str(params_type).lower() == "json":
+            r = request.post(url, json=params, headers=header, cookies=cookie)
+    else:
+        log.error("错误请求methods：", method)
+    return r
+
+
 # 2. 参数化运行测试用例
 class Test_Excel():
     # 初始化参数数据
@@ -44,28 +66,15 @@ class Test_Excel():
         cookies = case[data_key.cookies]
         status_code = case[data_key.status_code]
         db_verify = case[data_key.db_verify]
-        # 接口请求
-        if headers:
-            header = json.loads(headers)
-        else:
-            header = headers
-        if cookies:
-            cookie = json.loads(cookies)
-        else:
-            cookie = cookies
-        if len(str(params).strip()) is not 0:
-            params = json.loads(params)
-        if str(method).lower() == "get":
-            r = Request().get(url, headers=header, cookies=cookie)
-        elif str(method).lower() == "post":
-            if str(params_type).lower() == "form_data":
-                r = Request().post(url, data=params, headers=header, cookies=cookie)
-            elif str(params_type).lower() == "json":
-                r = Request().post(url, json=params, headers=header, cookies=cookie)
-        else:
-            log.error("错误请求methods：", method)
+
+        # 判断headers和cookies是否存在
+        header = Base.json_parse(headers)
+        cookie = Base.json_parse(cookies)
+        # 请求接口
+        r = run_api(url, method, params_type, header, cookie, params)
         AssertUtil().assert_code(r["code"], expected_code=status_code)
         AssertUtil().assert_in_body(r["body"], expected_body=except_result)
+
 
 if __name__ == '__main__':
     pytest.main(["-s", "test_excel_case.py"])

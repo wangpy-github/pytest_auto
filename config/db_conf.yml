@@ -3,7 +3,7 @@ db_01:
  db_user: "dev"
  db_port: "3306"
  db_password: "Scp3908!op"
- db_database: "house_dev"
+ db_database: "house_test"
  db_charset: "utf8"
 
 db_02:

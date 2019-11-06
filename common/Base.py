@@ -1,5 +1,6 @@
 from config.Conf import ConfigYaml
 from utils.MysqlUtil import Mysql
+import json
 
 """
 定义公共方法，用来返回mysql连接对象
@@ -20,6 +21,13 @@ def init_db(db_alise):
     conn = Mysql(host=host,user=user,password=password,database=database,charset=charset,port=port)
     return conn
 
+# 格式化字符串,转换为dict
+def json_parse(data):
+    # if headers:
+    #     header = json.loads(headers)
+    # else:
+    #     header = headers
+    return json.loads(data) if data else data
 
 if __name__ == '__main__':
     print(init_db("db_01"))
