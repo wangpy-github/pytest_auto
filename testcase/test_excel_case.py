@@ -6,6 +6,7 @@ from common.ExcelConfig import DataConfig
 from utils.RequestsUtil import Request
 import json
 import pytest
+from utils.AssertUtil import AssertUtil
 
 """
 测试用例excel参数化
@@ -63,7 +64,8 @@ class Test_Excel():
                 r = Request().post(url, json=params, headers=header, cookies=cookie)
         else:
             log.error("错误请求methods：", method)
-        print(r)
+        AssertUtil().assert_code(r["code"], expected_code=status_code)
+        AssertUtil().assert_in_body(r["body"], expected_body=except_result)
 
 if __name__ == '__main__':
     pytest.main(["-s", "test_excel_case.py"])

@@ -67,9 +67,7 @@ class Request():
 
 if __name__ == '__main__':
     # res = requests_get("http://www.baidu.com")
-    data = {
-        "json": '{"token": "3933241097da4ef47c9f8e7458dfd5624d116237"}'
-    }
+    data = {"token":"3dcb80537e0f1104fb66a4c292b6a53cd2150283"}
     # res = requests_post("https://test.hs.wangxuekeji.com/sites/api/?url=user/info", data=data)
     # res = Request().get("http://www.baidu.com")
     res = Request().post("https://test.hs.wangxuekeji.com/sites/api/?url=user/info", data=data)

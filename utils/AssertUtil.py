@@ -1,3 +1,4 @@
+#coding=utf-8
 from utils.LogUtil import my_log
 import json
 
@@ -36,7 +37,7 @@ class AssertUtil():
     # 断言body是否包含期待的expected_body
     def assert_in_body(self, body, expected_body):
         try:
-            body = json.dump(body)
+            body = json.dumps(body, ensure_ascii=False)
             assert expected_body in body
             return True
         except:
