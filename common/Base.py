@@ -30,7 +30,7 @@ def json_parse(data):
     #     header = headers
     return json.loads(data) if data else data
 
-def res_find(data,pattern_data='\${(.*)}\$'):
+def res_find(data,pattern_data= r'\${(.*)}\$'):
     """
     查询
     :param data: 将被正则匹配的字符串
@@ -40,7 +40,7 @@ def res_find(data,pattern_data='\${(.*)}\$'):
     re_res = pattern.findall(data)
     return re_res
 
-def res_sub(data,replace,pattern_data='\${(.*)}\$'):
+def res_sub(data,replace,pattern_data= r'\${(.*)}\$'):
     """
     替换
     :param data: 要被替换的字符串
@@ -51,15 +51,18 @@ def res_sub(data,replace,pattern_data='\${(.*)}\$'):
     pattern = re.compile(pattern_data)
     re_res = pattern.findall(data)
     if re_res:
-        return re.sub(pattern_data,replace,data)
+        return re.sub(pattern_data, replace, data)
     return re_res
 
-def params_find(headers,cookies):
+def params_find(headers, cookies, params):
     if "${" in headers:
         headers = res_find(headers)
     if "${" in cookies:
         cookies = res_find(cookies)
-    return headers,cookies
+    if "${" in params:
+        params = res_find(params)
+    # 返回${}$中的自定义[变量名]，没有${}$则返回excel中原数据
+    return headers, cookies, params
 
 
 

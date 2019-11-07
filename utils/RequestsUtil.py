@@ -47,6 +47,9 @@ class Request():
             self.log.debug("发送post请求")
             r = requests.post(url, json=json, data=data, headers=headers, cookies=cookies)
         code = r.status_code
+        cookies = r.cookies
+        # RequestsCookieJar 转 dict
+        cookies = requests.utils.dict_from_cookiejar(cookies)
         try:
             body = r.json()
         except Exception as e:
@@ -54,6 +57,7 @@ class Request():
         res = dict()
         res["code"] = code
         res["body"] = body
+        res["cookies"] = cookies
         return res
 
     # 重构get方法

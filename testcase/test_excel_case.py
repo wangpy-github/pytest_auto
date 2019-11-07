@@ -38,19 +38,18 @@ from common import Base
 """
 # 1. 初始化信息，可单独定义或者写成配置文件
 # case_file = os.path.join("../data", ConfigYaml().get_excel_file())    # 相对路径，使用pytest会出错
-case_file = get_data_path() + os.sep + ConfigYaml().get_excel_file()    # 使用绝对路径
+case_file = get_data_path() + os.sep + ConfigYaml().get_excel_file()  # 使用绝对路径
 sheet_name = ConfigYaml().get_excel_sheet()
-data_list = Data(case_file,sheet_name).get_run_data()                 # 获取需要运行的测试用例
+data_list = Data(case_file, sheet_name).get_run_data()  # 获取需要运行的测试用例
 log = my_log()
 data_key = DataConfig
+
 
 def run_api(url, method, params_type, header=None, cookie=None, params=None):
     """
     发送api请求
     """
     request = Request()
-    if len(str(params).strip()) is not 0:
-        params = json.loads(params)
     if str(method).lower() == "get":
         r = request.get(url, headers=header, cookies=cookie)
     elif str(method).lower() == "post":
@@ -77,22 +76,22 @@ def run_pre(pre_case):
     # 判断headers和cookies是否存在
     header = Base.json_parse(headers)
     cookie = Base.json_parse(cookies)
-    r = run_api(url,method=method,params_type=params_type, header=header, cookie=cookie, params=params)
+    params = Base.json_parse(params)
+    r = run_api(url, method=method, params_type=params_type, header=header, cookie=cookie, params=params)
     return r
 
-def get_correlation(headers,cookies,pre_res):
-    #验证是否有关联
-    headers_para,cookies_para = Base.params_find(headers,cookies)
-    #有关联，执行前置用例，获取结果
-    if len(headers_para):
-        headers_data = pre_res["body"][headers_para[0]]
-        #结果替换
-        headers = Base.res_sub(headers,headers_data)
-    if len(cookies_para):
-        cookies_data = pre_res["body"][cookies_para[0]]
+
+def get_correlation(headers, cookies, params, pre_res):
+    # 验证是否有关联
+    headers_para, cookies_para, params_para = Base.params_find(headers, cookies, params)
+    # TODO 可能还会用到body里边的数据，到时候再定义
+    # 有关联，获取上个接口返回的关联数据
+    if isinstance(cookies_para, list):  # TODO 如果参数本身就是一个列表，会出问题
+        cookie = pre_res["cookies"]
+        cookie = json.dumps(cookie)
         # 结果替换
-        cookies = Base.res_sub(headers, cookies_data)
-    return headers,cookies
+        cookies = Base.res_sub(cookies, cookie)
+    return headers, cookies, params
 
 
 # 2. 参数化运行测试用例
@@ -115,15 +114,21 @@ class Test_Excel():
 
         # 1. 验证前置条件
         if pre_exec:
-            pre_case = Data(case_file,sheet_name).get_case_pre(pre_exec)
+            pre_case = Data(case_file, sheet_name).get_case_pre(pre_exec)
             # 2. 执行前置测试用例，获取返回值
             pre_res = run_pre(pre_case)
-            # 获取前置条件中返回的数据
-            headers, cookies = get_correlation(headers, cookies, pre_res)
+            # 获取前置条件中返回的关联数据
+            # 查看哪些数据有关联，取到关联的数据并与当前数据组合
+            headers, cookies, params = get_correlation(headers, cookies, params, pre_res)
 
-        # 判断headers和cookies是否存在
-        header = Base.json_parse(headers)
-        cookie = Base.json_parse(cookies)
+        # 判断headers, cookies, params是否存在,存在则转为dict
+        try:
+            header = Base.json_parse(headers)
+            cookie = Base.json_parse(cookies)
+            params = Base.json_parse(params)
+        except Exception as e:
+            log.error("参数格式不对", e)
+            raise
         # # 请求接口
         r = run_api(url, method, params_type, header, cookie, params)
         print(r)

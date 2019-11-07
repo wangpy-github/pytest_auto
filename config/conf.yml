@@ -4,6 +4,6 @@ BASE:
  # 扩展名
  log_extension: ".log"
  test:
-  url: "https://hs.wangxuekeji.com/sites/api/?url="
+  url: "http://hs.wangxuekeji.com/sites/api/?url="
   test_case_file: "test_data.xlsx"
   case_sheet: "用户信息"
