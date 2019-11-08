@@ -1,3 +1,4 @@
+import json
 import os
 from config.Conf import ConfigYaml, get_data_path
 from common.ExcelData import Data
@@ -6,7 +7,7 @@ from common.ExcelConfig import DataConfig
 import pytest
 from utils.AssertUtil import AssertUtil
 from common import Base
-from common.Base import run_pre, get_correlation, run_api
+from common.Base import run_pre, run_api, Correlation
 import allure
 """
 测试用例excel参数化
@@ -52,7 +53,7 @@ class Test_Excel():
         case_id = case[data_key.case_id]
         case_model = case[data_key.case_model]
         case_name = case[data_key.case_name]
-        pre_exec = case[data_key.pre_exec]
+        pre_execs = case[data_key.pre_exec]
         method = case[data_key.method]
         params_type = case[data_key.params_type]
         params = case[data_key.params]
@@ -62,19 +63,25 @@ class Test_Excel():
         status_code = case[data_key.status_code]
         db_verify = case[data_key.db_verify]
 
-        # 验证前置条件
-        if pre_exec:
-            pre_res_list = list()
-            pre_cases = Data(case_file, sheet_name).get_case_pres(pre_exec)
+        # 验证前置条件 TODO 该接口有多个前置条件 ?   该接口参数有多个变量 ?
+        if pre_execs:
+            pre_case_res = dict()
+            for pre_exec in eval(pre_execs):
+                pre_case = Data(case_file, sheet_name).get_case_pre(pre_exec)
             # 2. 执行前置测试用例，获取返回值
-            for pre_case in pre_cases:
                 pre_res = run_pre(pre_case)
-                pre_res_list.append(pre_res)
-            # 获取前置条件中返回的关联数据
-            # 优化可能一条测试用例的执行用到多个前置测试用例的返回数据
-            # TODO 查看哪些数据有关联，取到关联的数据并与当前数据组合
-            cookies = get_correlation(cookies, pre_res_list[0])
-            cookies1 = get_correlation(cookies, pre_res_list[1])
+                """获取到的前置条件名 及该前置条件的返回值 转换为以该前置条件为键的字典"""
+                pre_case_res[pre_exec] = pre_res
+            # data_：有变量=>匹配到的变量名列表    没有变量=>读取excel的原字符串
+            correlation = Correlation()
+            data_ = correlation.params_find(cookies)
+            # TODO 以下填写组合数据的逻辑
+            if isinstance(data_, list) and len(data_) != 0:
+                """获取到的变量名列表转换为键值相同的字典"""
+                data_dict = dict(zip(data_, data_))
+                cookie = pre_case_res.get("login_1")[data_dict.get("cookies")]
+                cookie = json.dumps(cookie)
+                cookies = correlation.res_sub(cookies, cookie)
 
         # 判断headers, cookies, params是否存在,存在则转为dict
         try:
