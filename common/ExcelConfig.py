@@ -8,6 +8,7 @@
 class DataConfig():
     case_id = "用例ID"
     case_model = "模块"
+    case_name = "接口名称"
     url = "请求URL"
     pre_exec = "前置条件"
     method = "请求方式"

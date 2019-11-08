@@ -32,40 +32,6 @@ def json_parse(data):
     #     header = headers
     return json.loads(data) if data else data
 
-def res_find(data,pattern_data= r'\${(.*)}\$'):
-    """
-    查询
-    :param data: 将被正则匹配的字符串
-    :param pattern_data: 正则表达式
-    """
-    pattern = re.compile(pattern_data)
-    re_res = pattern.findall(data)
-    return re_res
-
-def res_sub(data,replace,pattern_data= r'\${(.*)}\$'):
-    """
-    替换
-    :param data: 要被替换的字符串
-    :param replace: 被替换的字符串
-    :param pattern_data: 正则表达式
-    :return: 
-    """
-    pattern = re.compile(pattern_data)
-    re_res = pattern.findall(data)
-    if re_res:
-        return re.sub(pattern_data, replace, data)
-    return re_res
-
-def params_find(headers, cookies, params):
-    if "${" in headers:
-        headers = res_find(headers)
-    if "${" in cookies:
-        cookies = res_find(cookies)
-    if "${" in params:
-        params = res_find(params)
-    # 返回${}$中的自定义[变量名]，没有${}$则返回excel中原数据
-    return headers, cookies, params
-
 data_key = DataConfig
 log = Log()
 def run_api(url, method, params_type, header=None, cookie=None, params=None):
@@ -103,19 +69,51 @@ def run_pre(pre_case):
     r = run_api(url, method=method, params_type=params_type, header=header, cookie=cookie, params=params)
     return r
 
+class Correlation():
+    def res_find(self, data, pattern_data=r'\${(.*)}\$'):
+        """
+        查询
+        :param data: 将被正则匹配的字符串
+        :param pattern_data: 正则表达式
+        """
+        pattern = re.compile(pattern_data)
+        re_res = pattern.findall(data)
+        return re_res
 
-def get_correlation(headers, cookies, params, pre_res):
-    # 验证是否有关联
-    headers_para, cookies_para, params_para = params_find(headers, cookies, params)
-    # TODO 可能还会用到body里边的数据，到时候再定义
-    # 有关联，获取上个接口返回的关联数据
-    if isinstance(cookies_para, list):  # TODO 如果参数本身就是一个列表，会出问题
+    def params_find(self, data):
+        if "${" in data:
+            data = self.res_find(data)
+        return data
+
+    def res_sub(self, data, replace, pattern_data=r'\${(.*)}\$'):
+        """
+        替换
+        :param data: 要被替换的字符串
+        :param replace: 被替换的字符串
+        :param pattern_data: 正则表达式
+        :return:
+        """
+        pattern = re.compile(pattern_data)
+        re_res = pattern.findall(data)
+        if re_res:
+            return re.sub(pattern_data, replace, data)
+        return re_res
+
+
+def get_correlation(data, pre_res):
+    """
+    有${}$:返回替换后的字符串
+    没有${}$:返回原字符串
+    :param data: 为excel读取的字符串
+    :param pre_res: 前置条件返回的结果（str：code,body,cookies）
+    """
+    correlation = Correlation()
+    data_ = correlation.params_find(data)  # TODO data_：为匹配到的结果列表 或 读取excel的原字符串
+    if isinstance(data_, list) and len(data_)!=0:
         cookie = pre_res["cookies"]
         cookie = json.dumps(cookie)
-        # 结果替换
-        cookies = res_sub(cookies, cookie)
-    return headers, cookies, params
-
+        data_ = correlation.res_sub(data, cookie)
+    return data_
 
 if __name__ == '__main__':
     print(init_db("db_01"))

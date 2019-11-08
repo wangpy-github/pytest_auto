@@ -51,6 +51,7 @@ class Test_Excel():
         url = ConfigYaml().get_conf_url() + case[data_key.url]
         case_id = case[data_key.case_id]
         case_model = case[data_key.case_model]
+        case_name = case[data_key.case_name]
         pre_exec = case[data_key.pre_exec]
         method = case[data_key.method]
         params_type = case[data_key.params_type]
@@ -68,7 +69,7 @@ class Test_Excel():
             pre_res = run_pre(pre_case)
             # 获取前置条件中返回的关联数据
             # 查看哪些数据有关联，取到关联的数据并与当前数据组合
-            headers, cookies, params = get_correlation(headers, cookies, params, pre_res)
+            cookies = get_correlation(cookies, pre_res)
 
         # 判断headers, cookies, params是否存在,存在则转为dict
         try:
@@ -89,7 +90,8 @@ class Test_Excel():
         """
         allure.dynamic.feature(sheet_name)
         allure.dynamic.story(case_model)
-        allure.dynamic.title(case_id)
+        title = "{} {}".format(case_id, case_name)
+        allure.dynamic.title(title)
         desc = "<font color='red'>请求URL:</font> {}<Br/>" \
                "<font color='red'>请求类型:</font>{}<Br/>" \
                "<font color='red'>期望结果:</font>{}<Br/>" \

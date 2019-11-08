@@ -25,7 +25,7 @@ class Data():
         """
         case_all_list = self.reader.data()
         for line in case_all_list:
-            if pre in dict(line).values():
+            if pre in dict(line).values():  # 值完全相等为Ture
                 return line
         return None
 
