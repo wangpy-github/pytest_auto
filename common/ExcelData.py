@@ -19,15 +19,20 @@ class Data():
         return run_list
 
     # 获取前置测试用例的数据
-    def get_case_pre(self, pre):
+    def get_case_pres(self, pres):
         """
         有前置条件的测试用例必须写在该条件用例之后
+        1. 取出所有的前置条件
+        2. 根据每一个前置条件查找前置条件的测试用例，返回
         """
         case_all_list = self.reader.data()
-        for line in case_all_list:
-            if pre in dict(line).values():  # 值完全相等为Ture
-                return line
-        return None
+        pre_cases_list = list()
+        for pre in eval(pres):
+            for line in case_all_list:
+                if pre in dict(line).values():
+                    pre_cases_list.append(line)
+        return pre_cases_list if pre_cases_list else None
+
 
 if __name__ == '__main__':
     # a = Data("../data/test_data.xlsx", "用户信息").get_run_data()

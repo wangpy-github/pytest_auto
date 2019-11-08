@@ -64,12 +64,17 @@ class Test_Excel():
 
         # 验证前置条件
         if pre_exec:
-            pre_case = Data(case_file, sheet_name).get_case_pre(pre_exec)
+            pre_res_list = list()
+            pre_cases = Data(case_file, sheet_name).get_case_pres(pre_exec)
             # 2. 执行前置测试用例，获取返回值
-            pre_res = run_pre(pre_case)
+            for pre_case in pre_cases:
+                pre_res = run_pre(pre_case)
+                pre_res_list.append(pre_res)
             # 获取前置条件中返回的关联数据
-            # 查看哪些数据有关联，取到关联的数据并与当前数据组合
-            cookies = get_correlation(cookies, pre_res)
+            # 优化可能一条测试用例的执行用到多个前置测试用例的返回数据
+            # TODO 查看哪些数据有关联，取到关联的数据并与当前数据组合
+            cookies = get_correlation(cookies, pre_res_list[0])
+            cookies1 = get_correlation(cookies, pre_res_list[1])
 
         # 判断headers, cookies, params是否存在,存在则转为dict
         try:
