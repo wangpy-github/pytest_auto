@@ -87,16 +87,16 @@ class Correlation():
 
     def res_sub(self, data, *args, pattern_data=r'\${(.*?)}\$'):
         """
+        注意：数据的顺序不能错
         :param data: 将被替换的字符串
         :param args: 去替换的目标值元组
         """
-        re_res = None
         pattern = re.compile(pattern_data)
         re_res_list = pattern.findall(data)
         if re_res_list and len(re_res_list)!=0:
             for val in args:
-                re_res = re.sub(pattern_data, val, data, count=1)
-        return re_res
+                data = re.sub(pattern_data, val, data, count=1)
+        return data
 
 if __name__ == '__main__':
     print(init_db("db_01"))

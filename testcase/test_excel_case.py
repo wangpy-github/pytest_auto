@@ -82,7 +82,7 @@ class Test_Excel():
                 # 1. 根据前置条件 和 变量名(返回的键) 取数据
                 cookie = pre_case_res.get("login_1")[data_dict.get("cookies")]
                 cookie = json.dumps(cookie)
-                # 2. 取替换excel的数据
+                # 2. 去替换excel的数据
                 cookies = correlation.res_sub(cookies, cookie)
 
         # 判断headers, cookies, params是否存在,存在则转为dict
