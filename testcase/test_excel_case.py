@@ -9,6 +9,7 @@ from utils.AssertUtil import AssertUtil
 from common import Base
 from common.Base import run_pre, run_api, Correlation
 import allure
+from config import Conf
 """
 测试用例excel参数化
 步骤：
@@ -116,4 +117,10 @@ class Test_Excel():
 
 
 if __name__ == '__main__':
-    pytest.main(["-s", "test_excel_case.py"])
+    # 定义result和html的绝对路径
+    report_result_path = Conf.get_report_path() + os.sep + "result"
+    report_html_path = Conf.get_report_path() + os.sep + "html"
+    # 执行测试用例
+    pytest.main(["-s", "test_excel_case.py", "--alluredir", report_result_path])
+    # 生成测试报告
+    Base.allure_report(report_result_path, report_html_path)

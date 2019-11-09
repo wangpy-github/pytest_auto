@@ -5,6 +5,7 @@ import re
 from common.ExcelConfig import DataConfig
 from utils.RequestsUtil import Request
 from distutils.log import Log
+import subprocess
 """
 定义公共方法，用来返回mysql连接对象
 
@@ -98,5 +99,18 @@ class Correlation():
                 data = re.sub(pattern_data, val, data, count=1)
         return data
 
+
+def allure_report(report_path, report_html):
+    """
+    生成allure 报告
+    """
+    # 执行命令 allure generate <allure测试结果目录> -o <存放报告的目录> --clean
+    allure_cmd = "allure generate %s -o %s --clean" % (report_path, report_html)
+    log.info("报告地址")
+    try:
+        subprocess.call(allure_cmd, shell=True)
+    except:
+        log.error("执行用例失败，请检查一下测试环境相关配置")
+        raise
 if __name__ == '__main__':
     print(init_db("db_01"))

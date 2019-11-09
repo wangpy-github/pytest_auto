@@ -17,6 +17,8 @@ _config_file = _config_path + os.sep + "conf.yml"
 _db_config_file = _config_path + os.sep + "db_conf.yml"
 # 定义logs目录路径
 _log_path = BASE_DIR + os.sep + "logs"
+# 定义report目录的路径
+_report_path = BASE_DIR + os.sep + "report"
 
 
 def get_data_path():
@@ -38,6 +40,8 @@ def get_log_path():
 def get_db_config_file():
     return _db_config_file
 
+def get_report_path():
+    return _report_path
 
 """
 读取文件信息
