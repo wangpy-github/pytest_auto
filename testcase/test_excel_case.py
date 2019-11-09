@@ -79,8 +79,10 @@ class Test_Excel():
             if isinstance(data_, list) and len(data_) != 0:
                 """获取到的变量名列表转换为键值相同的字典"""
                 data_dict = dict(zip(data_, data_))
+                # 1. 根据前置条件 和 变量名(返回的键) 取数据
                 cookie = pre_case_res.get("login_1")[data_dict.get("cookies")]
                 cookie = json.dumps(cookie)
+                # 2. 取替换excel的数据
                 cookies = correlation.res_sub(cookies, cookie)
 
         # 判断headers, cookies, params是否存在,存在则转为dict

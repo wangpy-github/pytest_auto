@@ -85,18 +85,17 @@ class Correlation():
             data = self.res_find(data)
         return data
 
-    def res_sub(self, data, replace, pattern_data=r'\${(.*?)}\$'):
+    def res_sub(self, data, *args, pattern_data=r'\${(.*?)}\$'):
         """
-        替换
-        :param data: 要被替换的字符串
-        :param replace: 被替换的字符串
-        :param pattern_data: 正则表达式
-        :return:
+        :param data: 将被替换的字符串
+        :param args: 去替换的目标值元组
         """
+        re_res = None
         pattern = re.compile(pattern_data)
-        re_res = pattern.findall(data)
-        if re_res:
-            return re.sub(pattern_data, replace, data)
+        re_res_list = pattern.findall(data)
+        if re_res_list and len(re_res_list)!=0:
+            for val in args:
+                re_res = re.sub(pattern_data, val, data, count=1)
         return re_res
 
 if __name__ == '__main__':
