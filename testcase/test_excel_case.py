@@ -73,33 +73,33 @@ class Test_Excel():
                 # 字典：{"用例ID":"该用例结果", "用例ID":"该用例结果"}
                 pre_case_res[pre_exec] = pre_res
             correlation = Correlation()
-            # TODO 注意：该情况只适用于 url/cookies/headers/params 其中一项有n个变量
-            # url/cookies/headers/params 其中一项必有变量，并将变量名取出
-            # data_：变量名列表 / excel字符串
 
+            # data_：变量名列表 / excel字符串
             data_ = correlation.params_find(url)
+            data_variable_list = list()
             if isinstance(data_, list) and len(data_) != 0:
-                data_variable_list = data_
+                data_variable_list.extend(data_)
 
             data_ = correlation.params_find(cookies)
             if isinstance(data_, list) and len(data_) != 0:
-                data_variable_list = data_
+                data_variable_list.extend(data_)
 
             data_ = correlation.params_find(headers)
             if isinstance(data_, list) and len(data_) != 0:
-                data_variable_list = data_
+                data_variable_list.extend(data_)
 
             data_ = correlation.params_find(params)
             if isinstance(data_, list) and len(data_) != 0:
-                data_variable_list = data_
+                data_variable_list.extend(data_)
 
             # 以下填写组合数据的逻辑
-            url, headers, cookies, params = logic(data_variable_list,
-                                                  pre_case_res,
-                                                  url=url,
-                                                  headers=headers,
-                                                  cookies=cookies,
-                                                  params=params)
+            if len(data_variable_list) != 0:
+                url, headers, cookies, params = logic(pre_case_res,
+                                                      case_id=case_id,
+                                                      url=url,
+                                                      headers=headers,
+                                                      cookies=cookies,
+                                                      params=params)
 
         # 判断headers, cookies, params是否存在,存在则转为dict
         try:
