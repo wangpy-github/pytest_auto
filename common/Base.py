@@ -89,6 +89,7 @@ class Correlation():
     def res_sub(self, data, *args, pattern_data=r'\${(.*?)}\$'):
         """
         注意：数据的顺序不能错
+        作用：有变量就替换，没有则返回原数据
         :param data: 将被替换的字符串
         :param args: 去替换的目标值元组
         """

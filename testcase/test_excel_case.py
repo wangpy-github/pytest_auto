@@ -1,4 +1,3 @@
-import json
 import os
 from config.Conf import ConfigYaml, get_data_path
 from common.ExcelData import Data
@@ -10,6 +9,8 @@ from common import Base
 from common.Base import run_pre, run_api, Correlation
 import allure
 from config import Conf
+from testcase.test_case_logic.case_logic import logic
+
 """
 测试用例excel参数化
 步骤：
@@ -38,8 +39,7 @@ from config import Conf
     4、关联方法
 """
 # 1. 初始化信息，可单独定义或者写成配置文件
-# case_file = os.path.join("../data", ConfigYaml().get_excel_file())    # 相对路径，使用pytest会出错
-case_file = get_data_path() + os.sep + ConfigYaml().get_excel_file()  # 使用绝对路径
+case_file = get_data_path() + os.sep + ConfigYaml().get_excel_file()  # 使用绝对路径，相对路径，使用pytest会出错
 sheet_name = ConfigYaml().get_excel_sheet()
 data_list = Data(case_file, sheet_name).get_run_data()  # 获取需要运行的测试用例
 log = my_log()
@@ -64,27 +64,42 @@ class Test_Excel():
         status_code = case[data_key.status_code]
         db_verify = case[data_key.db_verify]
 
-        # 验证前置条件 TODO 该接口有多个前置条件 ?   该接口参数有多个变量 ?
         if pre_execs:
             pre_case_res = dict()
             for pre_exec in eval(pre_execs):
                 pre_case = Data(case_file, sheet_name).get_case_pre(pre_exec)
-            # 2. 执行前置测试用例，获取返回值
+                # 执行前置测试用例，获取返回值
                 pre_res = run_pre(pre_case)
-                """获取到的前置条件名 及该前置条件的返回值 转换为以该前置条件为键的字典"""
+                # 字典：{"用例ID":"该用例结果", "用例ID":"该用例结果"}
                 pre_case_res[pre_exec] = pre_res
-            # data_：有变量=>匹配到的变量名列表    没有变量=>读取excel的原字符串
             correlation = Correlation()
-            data_ = correlation.params_find(cookies)
-            # TODO 以下填写组合数据的逻辑
+            # TODO 注意：该情况只适用于 url/cookies/headers/params 其中一项有n个变量
+            # url/cookies/headers/params 其中一项必有变量，并将变量名取出
+            # data_：变量名列表 / excel字符串
+
+            data_ = correlation.params_find(url)
             if isinstance(data_, list) and len(data_) != 0:
-                """获取到的变量名列表转换为键值相同的字典"""
-                data_dict = dict(zip(data_, data_))
-                # 1. 根据前置条件 和 变量名(返回的键) 取数据
-                cookie = pre_case_res.get("login_1")[data_dict.get("cookies")]
-                cookie = json.dumps(cookie)
-                # 2. 去替换excel的数据
-                cookies = correlation.res_sub(cookies, cookie)
+                data_variable_list = data_
+
+            data_ = correlation.params_find(cookies)
+            if isinstance(data_, list) and len(data_) != 0:
+                data_variable_list = data_
+
+            data_ = correlation.params_find(headers)
+            if isinstance(data_, list) and len(data_) != 0:
+                data_variable_list = data_
+
+            data_ = correlation.params_find(params)
+            if isinstance(data_, list) and len(data_) != 0:
+                data_variable_list = data_
+
+            # 以下填写组合数据的逻辑
+            url, headers, cookies, params = logic(data_variable_list,
+                                                  pre_case_res,
+                                                  url=url,
+                                                  headers=headers,
+                                                  cookies=cookies,
+                                                  params=params)
 
         # 判断headers, cookies, params是否存在,存在则转为dict
         try:
