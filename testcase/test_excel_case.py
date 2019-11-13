@@ -90,11 +90,23 @@ def call_back(case):
         for pre_exec in eval(pre_execs):
             pre_case = Data(case_file, sheet_name).get_case_pre(pre_exec)
             res = call_back(pre_case)
-            r = func(case, res)
-            return r
+            return func(case, res)
     r = run_pre(case)
     return r
-
+"""
+递归：https://www.cnblogs.com/yizhipanghu/p/10717161.html
+用例ID             前置条件
+goods_detail       无
+creat_cart         goods_detail
+checkOrder         creat_cart
+done               checkOrder
+此处理解为指向，return的本质是停止距离它最近的函数
+===> res --> call_back(done)
+===> res --> call_back(checkOrder)
+===> res --> call_back(creat_cart)
+===> res --> call_back(goods_detail)
+===> res --> val_goods_detail
+"""
 
 if __name__ == '__main__':
     # 定义result和html的绝对路径

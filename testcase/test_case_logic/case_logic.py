@@ -50,3 +50,16 @@ def logic(pre_case_res, case_id, url, headers, cookies, params):
         params = Correlation().res_sub(params, rec_id)
         url = Correlation().res_sub(url, None)
         return url, headers, cookies, params
+    if case_id == "done":
+        rec_id = pre_case_res["body"]["data"]["goods_list"][0]["rec_id"]
+        pay_id = pre_case_res["body"]["data"]["payment_list"][0]["pay_id"]
+        shipping_id = pre_case_res["body"]["data"]["shipping_list"][0]["shipping_id"]
+        rec_id = json.dumps(rec_id)
+        pay_id = json.dumps(pay_id)
+        shipping_id = json.dumps(shipping_id)
+        url = Correlation().res_sub(url,None)
+        headers = Correlation().res_sub(headers, None)
+        cookies = Correlation().res_sub(cookies, None)
+        params = Correlation().res_sub(params, rec_id, pay_id, shipping_id)
+        url = Correlation().res_sub(url, None)
+        return url, headers, cookies, params
