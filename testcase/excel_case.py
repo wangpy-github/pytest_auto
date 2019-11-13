@@ -18,6 +18,7 @@ data_list = Data(case_file, sheet_name).get_run_data()  # 获取需要运行的�
 log = my_log()
 data_key = DataConfig
 
+
 # 2. 参数化运行测试用例
 class Test_Excel():
     # 初始化参数数据
@@ -42,7 +43,7 @@ class Test_Excel():
         allure.dynamic.description(desc)
 
 
-def func(case, res):  # ID:preA  res:preB
+def func(case, res):
     url = ConfigYaml().get_conf_url() + case[data_key.url]
     case_id = case[data_key.case_id]
     method = case[data_key.method]
@@ -72,7 +73,8 @@ def func(case, res):  # ID:preA  res:preB
         data_variable_list.extend(data_)
         # 以下填写组合数据的逻辑
         if len(data_variable_list) != 0:
-            url, headers, cookies, params = logic(res, case_id=case_id, url=url, headers=headers, cookies=cookies, params=params)
+            url, headers, cookies, params = logic(res, case_id=case_id, url=url, headers=headers, cookies=cookies,
+                                                  params=params)
     try:
         header = Base.json_parse(headers)
         cookie = Base.json_parse(cookies)
@@ -84,14 +86,20 @@ def func(case, res):  # ID:preA  res:preB
     return r  # 返回最终preA的结果
 
 
+case_pre_excel_list = list()
 def call_back(case):
+    case_pre_excel_list.insert(0, case)
     pre_execs = case[data_key.pre_exec]
     if pre_execs:
         for pre_exec in eval(pre_execs):
             pre_case = Data(case_file, sheet_name).get_case_pre(pre_exec)
-            res = call_back(pre_case)
-            r = func(case, res)
-            return r
+            case_pre_excel_list.insert(0, pre_case)            # [preD,preC,preB,preA]
+            res = call_back(pre_case)  # preD执行结果
+            for i in range(0, len(case_pre_excel_list)):   # [preC,preB,preA]
+                if i == 0:
+                    continue
+                res = func(case_pre_excel_list[i], res)         # 返回preD的结果
+            return res  # 返回最终preA的结果
     r = run_pre(case)
     return r
 
