@@ -85,12 +85,11 @@ def func(case, res):  # ID:preA  res:preB
 
 
 def call_back(case):
-    pre_execs = case[data_key.pre_exec]
-    if pre_execs:
-        for pre_exec in eval(pre_execs):
-            pre_case = Data(case_file, sheet_name).get_case_pre(pre_exec)
-            res = call_back(pre_case)
-            return func(case, res)
+    pre_exec = case[data_key.pre_exec]
+    if pre_exec:
+        pre_case = Data(case_file, sheet_name).get_case_pre(pre_exec)
+        res = call_back(pre_case)
+        return func(case, res)
     r = run_pre(case)
     return r
 """
