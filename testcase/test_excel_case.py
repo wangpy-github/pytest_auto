@@ -93,13 +93,12 @@ def call_back(case):
             res = call_back(pre_case)
             res_more[pre_exec] = res
         return func(case, res_more)
-    r = run_pre(case)
-    return r
+    return run_pre(case)
 """
 递归：https://www.cnblogs.com/yizhipanghu/p/10717161.html
 用例ID             前置条件
 goods_detail       无
-creat_cart         goods_detail
+checkOrder         goods_detail
 checkOrder         creat_cart
 done               checkOrder
 此处理解为指向，return的本质是停止距离它最近的函数
