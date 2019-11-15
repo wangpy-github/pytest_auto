@@ -5,7 +5,7 @@ import json
 from common.Base import Correlation
 
 
-def logic(pre_case_res, case_id, url, headers, cookies, params):
+def logic(pre_res_more, case_id, url, headers, cookies, params):
     """
     在有变量的情况下，此处填写组合数据的逻辑
     """
@@ -13,21 +13,21 @@ def logic(pre_case_res, case_id, url, headers, cookies, params):
     # 2. 提取到有用的数据之后，去替换excel的数据
     if case_id == "create_cart":
         # 1. 取数据。组合数据
-        goods_id = pre_case_res["body"]["data"]["goods_id"]
+        goods_id = pre_res_more["goods_detail"]["body"]["data"]["goods_id"]
         goods_id = json.dumps(goods_id)
         # 2. 替换数据
         params = Correlation().res_sub(params, goods_id)
         return url, headers, cookies, params
 
     if case_id == "checkOrder":
-        rec_id = pre_case_res["body"]["data"]["cart_list"][0]["goods_list"][0]["rec_id"]
+        rec_id = pre_res_more["create_cart"]["body"]["data"]["cart_list"][0]["goods_list"][0]["rec_id"]
         rec_id = json.dumps(rec_id)
         params = Correlation().res_sub(params, rec_id)
         return url, headers, cookies, params
     if case_id == "done":
-        rec_id = pre_case_res["body"]["data"]["goods_list"][0]["rec_id"]
-        pay_id = pre_case_res["body"]["data"]["payment_list"][0]["pay_id"]
-        shipping_id = pre_case_res["body"]["data"]["shipping_list"][0]["shipping_id"]
+        rec_id = pre_res_more["checkOrder"]["body"]["data"]["goods_list"][0]["rec_id"]
+        pay_id = pre_res_more["checkOrder"]["body"]["data"]["payment_list"][0]["pay_id"]
+        shipping_id = pre_res_more["checkOrder"]["body"]["data"]["shipping_list"][0]["shipping_id"]
         rec_id = json.dumps(rec_id)
         pay_id = json.dumps(pay_id)
         shipping_id = json.dumps(shipping_id)

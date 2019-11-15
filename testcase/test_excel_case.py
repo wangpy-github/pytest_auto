@@ -42,7 +42,7 @@ class Test_Excel():
         allure.dynamic.description(desc)
 
 
-def func(case, res):  # ID:preA  res:preB
+def func(case, res_more):  # ID:preA  res:preB
     url = ConfigYaml().get_conf_url() + case[data_key.url]
     case_id = case[data_key.case_id]
     method = case[data_key.method]
@@ -72,7 +72,7 @@ def func(case, res):  # ID:preA  res:preB
         data_variable_list.extend(data_)
         # 以下填写组合数据的逻辑
         if len(data_variable_list) != 0:
-            url, headers, cookies, params = logic(res, case_id=case_id, url=url, headers=headers, cookies=cookies, params=params)
+            url, headers, cookies, params = logic(res_more, case_id=case_id, url=url, headers=headers, cookies=cookies, params=params)
     try:
         header = Base.json_parse(headers)
         cookie = Base.json_parse(cookies)
@@ -85,11 +85,14 @@ def func(case, res):  # ID:preA  res:preB
 
 
 def call_back(case):
-    pre_exec = case[data_key.pre_exec]
-    if pre_exec:
-        pre_case = Data(case_file, sheet_name).get_case_pre(pre_exec)
-        res = call_back(pre_case)
-        return func(case, res)
+    pre_execs = case[data_key.pre_exec]
+    res_more = dict()
+    if pre_execs:
+        for pre_exec in eval(pre_execs):
+            pre_case = Data(case_file, sheet_name).get_case_pre(pre_exec)
+            res = call_back(pre_case)
+            res_more[pre_exec] = res
+        return func(case, res_more)
     r = run_pre(case)
     return r
 """
