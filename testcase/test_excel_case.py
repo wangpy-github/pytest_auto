@@ -41,6 +41,9 @@ class Test_Excel():
                "<font color='red'>实际结果:</font>{}".format(url, method, except_result, r)
         allure.dynamic.description(desc)
 
+        # AssertUtil().assert_code(r["code"], expected_code=status_code)
+        # AssertUtil().assert_in_body(r["body"], expected_body=except_result)
+
 
 def func(case, res_more):  # ID:preA  res:preB
     url = ConfigYaml().get_conf_url() + case[data_key.url]
@@ -101,12 +104,7 @@ goods_detail       无
 checkOrder         goods_detail
 checkOrder         creat_cart
 done               checkOrder
-此处理解为指向，return的本质是停止距离它最近的函数
-===> res --> call_back(done)
-===> res --> call_back(checkOrder)
-===> res --> call_back(creat_cart)
-===> res --> call_back(goods_detail)
-===> res --> val_goods_detail
+return的本质是停止距离它最近的函数
 """
 
 if __name__ == '__main__':
