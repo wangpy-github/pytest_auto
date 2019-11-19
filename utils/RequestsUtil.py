@@ -42,7 +42,7 @@ class Request():
     def request_api(self, url, json=None, data=None, headers=None, cookies=None, method="get"):
         if method == "get":
             self.log.debug("发送get请求,URL:" + url)
-            r = requests.get(url, data=data, headers=headers, cookies=cookies)
+            r = requests.get(url, params=data, headers=headers, cookies=cookies)
         elif method == "post":
             self.log.debug("发送post请求,URL:" + url)
             r = requests.post(url, json=json, data=data, headers=headers, cookies=cookies)
@@ -54,10 +54,13 @@ class Request():
             body = r.json()
         except Exception as e:
             body = r.text
+
+        total_seconds = r.elapsed.total_seconds()
         res = dict()
         res["code"] = code
         res["body"] = body
         res["cookies"] = cookies
+        res["total_seconds"] = total_seconds
         return res
 
     # 重构get方法

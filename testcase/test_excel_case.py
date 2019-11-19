@@ -37,8 +37,9 @@ class Test_Excel():
         allure.dynamic.title(title)
         desc = "<font color='red'>请求URL:</font> {}<Br/>" \
                "<font color='red'>请求类型:</font>{}<Br/>" \
+               "<font color='red'>响应时间:</font>{}秒<Br/>" \
                "<font color='red'>期望结果:</font>{}<Br/>" \
-               "<font color='red'>实际结果:</font>{}".format(url, method, except_result, r)
+               "<font color='red'>实际结果:</font>{}".format(url, method, r["total_seconds"], except_result, r["body"])
         allure.dynamic.description(desc)
 
         # AssertUtil().assert_code(r["code"], expected_code=status_code)
