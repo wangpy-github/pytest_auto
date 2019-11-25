@@ -17,7 +17,7 @@ sheet_name = ConfigYaml().get_excel_sheet()
 data_list = Data(case_file, sheet_name).get_run_data()  # 获取需要运行的测试用例
 log = my_log()
 data_key = DataConfig
-
+request_params = dict()
 # 2. 参数化运行测试用例
 class Test_Excel():
     # 初始化参数数据
@@ -28,6 +28,9 @@ class Test_Excel():
         case_model = case[data_key.case_model]
         case_name = case[data_key.case_name]
         method = case[data_key.method]
+        params = case[data_key.params]
+        headers = case[data_key.headers]
+        cookies = case[data_key.cookies]
         except_result = case[data_key.except_result]
         r = call_back(case)
 
@@ -37,9 +40,20 @@ class Test_Excel():
         allure.dynamic.title(title)
         desc = "<font color='red'>请求URL:</font> {}<Br/>" \
                "<font color='red'>请求类型:</font>{}<Br/>" \
+               "<font color='red'>headers:</font>{}<Br/>" \
+               "<font color='red'>cookies:</font>{}<Br/>" \
+               "<font color='red'>params:</font>{}<Br/>" \
                "<font color='red'>响应时间:</font>{}秒<Br/>" \
                "<font color='red'>期望结果:</font>{}<Br/>" \
-               "<font color='red'>实际结果:</font>{}".format(url, method, r["total_seconds"], except_result, r["body"])
+               "<font color='red'>实际结果:</font>{}".format(request_params.get("url", url),
+                                                         method,
+                                                         request_params.get("headers", headers),
+                                                         request_params.get("cookies", cookies),
+                                                         request_params.get("params", params),
+                                                         r.get("total_seconds", None),
+                                                         except_result,
+                                                         r.get("body", None)
+                                                         )
         allure.dynamic.description(desc)
 
         # AssertUtil().assert_code(r["code"], expected_code=status_code)
@@ -84,6 +98,10 @@ def func(case, res_more):  # ID:preA  res:preB
     except Exception as e:
         log.error("参数格式不对", e)
         raise
+    request_params["url"] = url
+    request_params["headers"] = header if header else None
+    request_params["cookies"] = cookie if cookie else None
+    request_params["params"] = param if param else None
     r = run_api(url, method, params_type, header, cookie, param)  # preD发送请求，获取返回结果
     return r  # 返回最终preA的结果
 
