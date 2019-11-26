@@ -51,7 +51,7 @@ class Test_Excel():
                                                          request_params.get("cookies", cookies),
                                                          request_params.get("params", params),
                                                          r.get("total_seconds", None),
-                                                         except_result,
+                                                         r.get("verif_data_pre", except_result),
                                                          r.get("body", None)
                                                          )
         allure.dynamic.description(desc)
@@ -90,7 +90,7 @@ def func(case, res_more):  # ID:preA  res:preB
         data_variable_list.extend(data_)
         # 以下填写组合数据的逻辑
         if len(data_variable_list) != 0:
-            url, headers, cookies, params = logic(res_more, case_id=case_id, url=url, headers=headers, cookies=cookies, params=params)
+            url, headers, cookies, params, verif_data_pre = logic(res_more, case_id=case_id, url=url, headers=headers, cookies=cookies, params=params)
     try:
         header = Base.json_parse(headers)
         cookie = Base.json_parse(cookies)
@@ -103,6 +103,8 @@ def func(case, res_more):  # ID:preA  res:preB
     request_params["cookies"] = cookie if cookie else None
     request_params["params"] = param if param else None
     r = run_api(url, method, params_type, header, cookie, param)  # preD发送请求，获取返回结果
+    # 将需要验证的数据放在响应结果里边
+    r["verif_data_pre"] = verif_data_pre if verif_data_pre else None
     return r  # 返回最终preA的结果
 
 
