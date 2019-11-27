@@ -52,23 +52,6 @@ def run_api(url, method, params_type, header=None, cookie=None, params=None):
     return r
 
 
-def run_pre(pre_case):
-    """
-    执行前置测试用例
-    """
-    # 初始化前置条件测试用例的参数
-    url = ConfigYaml().get_conf_url() + pre_case[data_key.url]
-    method = pre_case[data_key.method]
-    params = pre_case[data_key.params]
-    params_type = pre_case[data_key.params_type]
-    headers = pre_case[data_key.headers]
-    cookies = pre_case[data_key.cookies]
-    # 判断headers和cookies是否存在
-    header = json_parse(headers)
-    cookie = json_parse(cookies)
-    params = json_parse(params)
-    r = run_api(url, method=method, params_type=params_type, header=header, cookie=cookie, params=params)
-    return r
 
 class Correlation():
     def res_find(self, data, pattern_data=r'\${(.*?)}\$'):

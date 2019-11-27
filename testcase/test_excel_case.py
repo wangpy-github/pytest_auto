@@ -6,7 +6,7 @@ from common.ExcelConfig import DataConfig
 import pytest
 from utils.AssertUtil import AssertUtil
 from common import Base
-from common.Base import run_pre, run_api, Correlation
+from common.Base import run_api
 import allure
 from config import Conf
 from testcase.test_case_logic.case_logic import logic
@@ -60,7 +60,13 @@ class Test_Excel():
         # AssertUtil().assert_in_body(r["body"], expected_body=except_result)
 
 
-def func(case, res_more):  # ID:preA  res:preB
+def run(case, res_more=None):
+    """
+    根据前置接口的返回数据，去获取当前接口的返回数据
+    :param case: 当前测试用例
+    :param res_more: 当前用例的所有前置接口返回数据   Type：dict
+    :return:
+    """
     url = ConfigYaml().get_conf_url() + case[data_key.url]
     case_id = case[data_key.case_id]
     method = case[data_key.method]
@@ -68,29 +74,10 @@ def func(case, res_more):  # ID:preA  res:preB
     params = case[data_key.params]
     headers = case[data_key.headers]
     cookies = case[data_key.cookies]
-    # 返回替换后的preD用例数据
-    correlation = Correlation()
 
-    # data_：变量名列表 / excel字符串
-    data_ = correlation.params_find(url)
-    data_variable_list = list()
-    if isinstance(data_, list) and len(data_) != 0:
-        data_variable_list.extend(data_)
-
-    data_ = correlation.params_find(cookies)
-    if isinstance(data_, list) and len(data_) != 0:
-        data_variable_list.extend(data_)
-
-    data_ = correlation.params_find(headers)
-    if isinstance(data_, list) and len(data_) != 0:
-        data_variable_list.extend(data_)
-
-    data_ = correlation.params_find(params)
-    if isinstance(data_, list) and len(data_) != 0:
-        data_variable_list.extend(data_)
-        # 以下填写组合数据的逻辑
-        if len(data_variable_list) != 0:
-            url, headers, cookies, params, verif_data_pre = logic(res_more, case_id=case_id, url=url, headers=headers, cookies=cookies, params=params)
+    # 根据前置接口的返回数据，去获取当前接口的请求参数
+    # 有${}$则处理，无则原数据返回，增加verif_data_pre用于断言使用
+    url, headers, cookies, params, verif_data_pre = logic(res_more, case_id=case_id, url=url, headers=headers, cookies=cookies, params=params)
     try:
         header = Base.json_parse(headers)
         cookie = Base.json_parse(cookies)
@@ -98,26 +85,30 @@ def func(case, res_more):  # ID:preA  res:preB
     except Exception as e:
         log.error("参数格式不对", e)
         raise
+    # 组织请求参数为dict，用于之后的allure描述展示
     request_params["url"] = url
     request_params["headers"] = header if header else None
     request_params["cookies"] = cookie if cookie else None
     request_params["params"] = param if param else None
-    r = run_api(url, method, params_type, header, cookie, param)  # preD发送请求，获取返回结果
-    # 将需要验证的数据放在响应结果里边
+
+    # 执行当前用例
+    r = run_api(url, method, params_type, header, cookie, param)
+
+    # 将需要验证的数据放在响应结果里边，用于之后的断言
     r["verif_data_pre"] = verif_data_pre if verif_data_pre else None
     return r  # 返回最终preA的结果
 
 
+res_more = dict()
 def call_back(case):
     pre_execs = case[data_key.pre_exec]
-    res_more = dict()
     if pre_execs:
         for pre_exec in eval(pre_execs):
             pre_case = Data(case_file, sheet_name).get_case_pre(pre_exec)
             res = call_back(pre_case)
             res_more[pre_exec] = res
-        return func(case, res_more)
-    return run_pre(case)
+        return run(case, res_more)
+    return run(case, None)
 """
 递归：https://www.cnblogs.com/yizhipanghu/p/10717161.html
 用例ID             前置条件
