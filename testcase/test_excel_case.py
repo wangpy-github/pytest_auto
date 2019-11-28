@@ -1,3 +1,4 @@
+#coding=utf-8
 import os
 from config.Conf import ConfigYaml, get_data_path
 from common.ExcelData import Data
@@ -21,6 +22,8 @@ request_params = dict()
 # 2. 参数化运行测试用例
 class Test_Excel():
     # 初始化参数数据
+    # @pytest.mark.timeout(0.03)  # 当前用例限定0.03s超时
+    @pytest.mark.flaky(reruns=3, reruns_delay=1)  # 如果失败则延迟1s后重跑
     @pytest.mark.parametrize("case", data_list)
     def test_run(self, case):
         url = ConfigYaml().get_conf_url() + case[data_key.url]
@@ -39,12 +42,19 @@ class Test_Excel():
         title = "{} {}".format(case_id, case_name)
         allure.dynamic.title(title)
         desc = "<font color='red'>请求URL:</font> {}<Br/>" \
+               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
                "<font color='red'>请求类型:</font>{}<Br/>" \
+               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
                "<font color='red'>headers:</font>{}<Br/>" \
+               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
                "<font color='red'>cookies:</font>{}<Br/>" \
+               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
                "<font color='red'>params:</font>{}<Br/>" \
+               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
                "<font color='red'>响应时间:</font>{}秒<Br/>" \
+               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
                "<font color='red'>期望结果:</font>{}<Br/>" \
+               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
                "<font color='red'>实际结果:</font>{}".format(request_params.get("url", url),
                                                          method,
                                                          request_params.get("headers", headers),

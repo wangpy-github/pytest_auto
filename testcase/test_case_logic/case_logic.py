@@ -62,4 +62,12 @@ def logic(pre_res_more, case_id, url, headers, cookies, params):
         params = Correlation().res_sub(params, order_id)
     if case_id == "integral_1":
         verif_data_pre["integral"] = pre_res_more["integral"]["body"]["data"]["integral"]
+    if case_id == "cancel":
+        order_id = pre_res_more["done"]["body"]["data"]["order_id"]
+        order_id = str(order_id)
+        params = Correlation().res_sub(params, order_id)
+    if case_id == "wxpay":
+        order_id = pre_res_more["done"]["body"]["data"]["order_id"]
+        order_id = str(order_id)
+        params = Correlation().res_sub(params, order_id)
     return url, headers, cookies, params, verif_data_pre
