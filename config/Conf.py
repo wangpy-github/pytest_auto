@@ -19,7 +19,11 @@ _db_config_file = _config_path + os.sep + "db_conf.yml"
 _log_path = BASE_DIR + os.sep + "logs"
 # 定义report目录的路径
 _report_path = BASE_DIR + os.sep + "report"
+# 定义testcase目录路径
+_testcase_path = BASE_DIR + os.sep + "testcase"
 
+def get_testcase_path():
+    return _testcase_path
 
 def get_data_path():
     return _data_path

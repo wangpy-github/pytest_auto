@@ -1,18 +1,17 @@
 #coding=utf-8
 import os
-from config.Conf import ConfigYaml, get_data_path
+import unittest
+import ddt
+from HTMLTestRunner.HTMLTestRunner import HTMLTestRunner
+from config.Conf import ConfigYaml, get_data_path, get_testcase_path
 from common.ExcelData import Data
 from utils.LogUtil import my_log
 from common.ExcelConfig import DataConfig
-import pytest
-from utils.AssertUtil import AssertUtil
 from common import Base
 from common.Base import run_api
-import allure
 from config import Conf
 from testcase.test_case_logic.case_logic import logic
 import datetime
-
 # 1. 初始化信息，可单独定义或者写成配置文件
 case_file = get_data_path() + os.sep + ConfigYaml().get_excel_file()  # 使用绝对路径，相对路径，使用pytest会出错
 sheet_name = ConfigYaml().get_excel_sheet()
@@ -21,11 +20,10 @@ log = my_log()
 data_key = DataConfig
 request_params = dict()
 # 2. 参数化运行测试用例
-class Test_Excel():
+@ddt.ddt
+class Test_Excel(unittest.TestCase):
     # 初始化参数数据
-    # @pytest.mark.timeout(0.03)  # 当前用例限定0.03s超时
-    @pytest.mark.flaky(reruns=3, reruns_delay=1)  # 如果失败则延迟1s后重跑
-    @pytest.mark.parametrize("case", data_list)
+    @ddt.data(*data_list)
     def test_run(self, case):
         url = ConfigYaml().get_conf_url() + case[data_key.url]
         case_id = case[data_key.case_id]
@@ -38,37 +36,14 @@ class Test_Excel():
         except_result = case[data_key.except_result]
         r = call_back(case)
 
-        allure.dynamic.feature(sheet_name)
-        allure.dynamic.story(case_model)
-        title = "{} {}".format(case_id, case_name)
-        allure.dynamic.title(title)
-        desc = "<font color='red'>请求URL:</font> {}<Br/>" \
-               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
-               "<font color='red'>请求类型:</font>{}<Br/>" \
-               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
-               "<font color='red'>headers:</font>{}<Br/>" \
-               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
-               "<font color='red'>cookies:</font>{}<Br/>" \
-               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
-               "<font color='red'>params:</font>{}<Br/>" \
-               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
-               "<font color='red'>响应时间:</font>{}秒<Br/>" \
-               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
-               "<font color='red'>期望结果:</font>{}<Br/>" \
-               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
-               "<font color='red'>实际结果:</font>{}".format(request_params.get("url", url),
-                                                         method,
-                                                         request_params.get("headers", headers),
-                                                         request_params.get("cookies", cookies),
-                                                         request_params.get("params", params),
-                                                         r.get("total_seconds", None),
-                                                         r.get("verif_data_pre", except_result),
-                                                         r.get("body", None)
-                                                         )
-        allure.dynamic.description(desc)
-
-        # AssertUtil().assert_code(r["code"], expected_code=status_code)
-        # AssertUtil().assert_in_body(r["body"], expected_body=except_result)
+        print("请求URL:", request_params.get("url", url))
+        print("method:", method)
+        print("headers:", request_params.get("headers", url))
+        print("cookies:", request_params.get("cookies", cookies))
+        print("params:", request_params.get("params", params))
+        print("响应时间:", r.get("total_seconds", None))
+        print("期望结果:", r.get("verif_data_pre", except_result))
+        print("实际结果:", r.get("body", None))
 
 
 def run(case, res_more=None):
@@ -120,22 +95,21 @@ def call_back(case):
             res_more[pre_exec] = res
         return run(case, res_more)
     return run(case, None)
-"""
-递归：https://www.cnblogs.com/yizhipanghu/p/10717161.html
-用例ID             前置条件
-goods_detail       无
-checkOrder         goods_detail
-checkOrder         creat_cart
-done               checkOrder
-return的本质是停止距离它最近的函数
-"""
 
 if __name__ == '__main__':
-    # 定义result和html的绝对路径
+    # unittest.main()
+
+    # 创建一个测试套件，并向其中加载测试用例
+    # suite = unittest.TestLoader().loadTestsFromTestCase(Test_Excel)
+    # 显式运行测试没并且通过设置verbosity设定对每一个测试方法产生测试结果
+    # unittest.TextTestRunner(verbosity=2).run(suite)
+
+    suite = unittest.defaultTestLoader.discover(get_testcase_path(), "test*.py")
+    # 报告文件存放路径
     current_time = datetime.datetime.now().strftime("%A-%Y-%m-%d#%H-%M-%S")
-    report_result_path = Conf.get_report_path() + os.sep + "result" + os.sep + current_time
-    report_html_path = Conf.get_report_path() + os.sep + "html" + os.sep + current_time
-    # 执行测试用例
-    pytest.main(["-s", "test_excel_case.py", "--alluredir", report_result_path])
-    # 生成测试报告
-    Base.allure_report(report_result_path, report_html_path)
+    report_html_path = Conf.get_report_path() + os.sep + current_time + ".html"
+
+    with open(report_html_path, "wb") as f:
+        # 实例化HTMLTestRunner对象，传入报告文件流f
+        runner = HTMLTestRunner(stream=f, title="自动化接口测试报告", description="描述信息")
+        runner.run(suite, verbosity=2)
