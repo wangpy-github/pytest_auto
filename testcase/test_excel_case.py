@@ -1,6 +1,7 @@
 #coding=utf-8
 import os
 import unittest
+from pprint import pprint
 import ddt
 from HTMLTestRunner.HTMLTestRunner import HTMLTestRunner
 from config.Conf import ConfigYaml, get_data_path, get_testcase_path
@@ -37,14 +38,21 @@ class Test_Excel(unittest.TestCase):
         r = call_back(case)
 
         print("请求URL:", request_params.get("url", url))
+        print("-------------------------------------------------------------------")
         print("method:", method)
+        print("-------------------------------------------------------------------")
         print("headers:", request_params.get("headers", headers))
+        print("-------------------------------------------------------------------")
         print("cookies:", request_params.get("cookies", cookies))
+        print("-------------------------------------------------------------------")
         print("params:", request_params.get("params", params))
+        print("-------------------------------------------------------------------")
         print("响应时间:", r.get("total_seconds", None))
+        print("-------------------------------------------------------------------")
         print("期望结果:", r.get("verif_data_pre", except_result))
-        print("实际结果:", r.get("body", None))
-
+        print("-------------------------------------------------------------------")
+        print("实际结果：")
+        pprint(r.get("body", None))
 
 def run(case, res_more=None):
     """

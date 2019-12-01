@@ -21,5 +21,5 @@ if __name__ == '__main__':
 
     with open(report_html_path, "wb") as f:
         # 实例化HTMLTestRunner对象，传入报告文件流f
-        runner = HTMLTestRunner(stream=f, title="自动化接口测试报告", description="描述信息")
+        runner = HTMLTestRunner(stream=f, title="自动化接口测试报告", description="执行人：wpy")
         runner.run(suite, verbosity=2)

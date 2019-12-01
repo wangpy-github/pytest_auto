@@ -68,6 +68,15 @@
 
      - 参考：<https://www.cnblogs.com/captainmeng/p/7736949.html> 
      - 参考：<https://www.jianshu.com/p/c5b1df72acfa> 
+     - 参考：<https://www.jianshu.com/p/78c392ba88fa> 
+
+     日志不换行问题
+
+     ```python
+     pre         { word-wrap:break-word;word-break:break-all;overflow:auto; }
+     ```
+
+     
 
      ```python
      class _TestResult(TestResult):
