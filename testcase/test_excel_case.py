@@ -38,7 +38,7 @@ class Test_Excel(unittest.TestCase):
 
         print("请求URL:", request_params.get("url", url))
         print("method:", method)
-        print("headers:", request_params.get("headers", url))
+        print("headers:", request_params.get("headers", headers))
         print("cookies:", request_params.get("cookies", cookies))
         print("params:", request_params.get("params", params))
         print("响应时间:", r.get("total_seconds", None))
