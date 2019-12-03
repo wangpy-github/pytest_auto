@@ -7,11 +7,11 @@ from common.ExcelConfig import DataConfig
 import pytest
 from utils.AssertUtil import AssertUtil
 from common import Base
-from common.Base import run_api
 import allure
 from config import Conf
 from testcase.test_case_logic.case_logic import logic
 import datetime
+from common.Base import run_api
 
 # 1. 初始化信息，可单独定义或者写成配置文件
 case_file = get_data_path() + os.sep + ConfigYaml().get_excel_file()  # 使用绝对路径，相对路径，使用pytest会出错
@@ -85,6 +85,7 @@ def run(case, res_more=None):
     case_id = case[data_key.case_id]
     method = case[data_key.method]
     params_type = case[data_key.params_type]
+    # 公共变量被替换后的字符串数据
     params = case[data_key.params]
     headers = case[data_key.headers]
     cookies = case[data_key.cookies]

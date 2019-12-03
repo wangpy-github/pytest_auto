@@ -7,3 +7,5 @@ BASE:
   url: "https://test.hs.wangxuekeji.com/sites/api/?url="
   test_case_file: "test_data.xlsx"
   case_sheet: "用户信息"
+  common_variable:
+   token: "067c99769d0e81585300139b6bbcddff09b1ad28"

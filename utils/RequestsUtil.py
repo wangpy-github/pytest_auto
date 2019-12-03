@@ -42,10 +42,10 @@ class Request():
     def request_api(self, url, json=None, data=None, headers=None, cookies=None, method="get"):
         if method == "get":
             self.log.debug("发送get请求,URL:" + url)
-            r = requests.get(url, params=data, headers=headers, cookies=cookies)
+            r = requests.get(url, params=data, headers=headers, cookies=cookies, verify=False)
         elif method == "post":
             self.log.debug("发送post请求,URL:" + url)
-            r = requests.post(url, json=json, data=data, headers=headers, cookies=cookies)
+            r = requests.post(url, json=json, data=data, headers=headers, cookies=cookies, verify=False)
         code = r.status_code
         cookies = r.cookies
         # RequestsCookieJar 转 dict

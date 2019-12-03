@@ -82,6 +82,10 @@ class ConfigYaml():
     def get_excel_sheet(self):
         return self.config["BASE"]["test"]["case_sheet"]
 
+    # 定义获取公共变量token的方法
+    def get_common_variable(self):
+        return self.config["BASE"]["test"]["common_variable"]
+
 
 if __name__ == '__main__':
     # print(get_config_file())
@@ -91,3 +95,4 @@ if __name__ == '__main__':
     # print(ConfigYaml().get_db_config_info("db_01"))
     print(ConfigYaml().get_excel_file())
     print(ConfigYaml().get_excel_sheet())
+    print(ConfigYaml().get_common_variable())
