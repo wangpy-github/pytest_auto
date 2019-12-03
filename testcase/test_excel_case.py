@@ -24,7 +24,7 @@ request_params = dict()
 class Test_Excel():
     # 初始化参数数据
     # @pytest.mark.timeout(0.03)  # 当前用例限定0.03s超时
-    @pytest.mark.flaky(reruns=3, reruns_delay=1)  # 如果失败则延迟1s后重跑
+    # @pytest.mark.flaky(reruns=3, reruns_delay=1)  # 如果失败则延迟1s后重跑
     @pytest.mark.parametrize("case", data_list)
     def test_run(self, case):
         url = ConfigYaml().get_conf_url() + case[data_key.url]
@@ -68,7 +68,10 @@ class Test_Excel():
         allure.dynamic.description(desc)
 
         # AssertUtil().assert_code(r["code"], expected_code=status_code)
-        # AssertUtil().assert_in_body(r["body"], expected_body=except_result)
+        # 增加断言信息
+        if r.get("verif_data_pre"):
+            for verif_data_pre in r.get("verif_data_pre"):
+                AssertUtil().assert_in_body(str(r["body"]), expected_body=verif_data_pre if verif_data_pre else except_result)
 
 
 def run(case, res_more=None):
