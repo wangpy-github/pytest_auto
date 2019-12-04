@@ -50,7 +50,6 @@ def logic(pre_res_more, case_id, url, headers, cookies, params):
         order_id = pre_res_more["done"]["body"]["data"]["order_id"]
         order_id = str(order_id)
         params = Correlation().res_sub(params, token, order_id)
-        print("***************",params)
         # 更改数据库数据
         conn = init_db("db_01")
         conn.exec("UPDATE hs_order_info SET pay_status=2 WHERE order_id={}".format(order_id))
@@ -121,4 +120,27 @@ def logic(pre_res_more, case_id, url, headers, cookies, params):
         data_pre = "'integral': {}".format(integral)
         verif_data_pre.append(data_pre)
         params = Correlation().res_sub(params, token)
+    if case_id == "serve":
+        params = Correlation().res_sub(params, token)
+    if case_id == "address_list":
+        params = Correlation().res_sub(params, token)
+    if case_id == "change_price":
+        params = Correlation().res_sub(params, token)
+    if case_id == "serve_confirm_1":
+        pet_id = str(pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"])
+        address_id = str(pre_res_more["address_list"]["body"]["data"][1]["id"])
+        time = pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"]
+        params = Correlation().res_sub(params, token, pet_id, address_id, time)
+    if case_id == "serve_confirm_2":
+        pet_id = str(pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"])
+        time = str(pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"])
+        params = Correlation().res_sub(params, token, pet_id, time)
+    if case_id == "serve_confirm_3":
+        addres_id = str(pre_res_more["address_list"]["body"]["data"][1]["id"])
+        time = str(pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"])
+        params = Correlation().res_sub(params, token, addres_id, time)
+    if case_id == "serve_confirm_4":
+        pet_id = str(pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"])
+        addres_id = str(pre_res_more["address_list"]["body"]["data"][1]["id"])
+        params = Correlation().res_sub(params, token, pet_id, addres_id)
     return url, headers, cookies, params, verif_data_pre

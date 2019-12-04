@@ -58,11 +58,11 @@ class Test_Excel():
                "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
                "<font color='red'>实际结果:</font>{}".format(request_params.get("url", url),
                                                          method,
-                                                         request_params.get("headers", headers),
-                                                         request_params.get("cookies", cookies),
-                                                         request_params.get("params", params),
+                                                         request_params.get("headers") if request_params.get("headers") else headers,
+                                                         request_params.get("cookies") if request_params.get("cookies") else cookies,
+                                                         request_params.get("params") if request_params.get("params") else params,
                                                          r.get("total_seconds", None),
-                                                         r.get("verif_data_pre", except_result),
+                                                         r.get("verif_data_pre") if r.get("verif_data_pre") else except_result,
                                                          r.get("body", None)
                                                          )
         allure.dynamic.description(desc)
@@ -71,8 +71,9 @@ class Test_Excel():
         # 增加断言信息
         if r.get("verif_data_pre"):
             for verif_data_pre in r.get("verif_data_pre"):
-                AssertUtil().assert_in_body(str(r["body"]), expected_body=verif_data_pre if verif_data_pre else except_result)
-
+                AssertUtil().assert_in_body(r["body"], expected_body=verif_data_pre)
+        if except_result:
+            AssertUtil().assert_in_body(r["body"], expected_body=except_result)
 
 def run(case, res_more=None):
     """
