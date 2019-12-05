@@ -126,19 +126,32 @@ def logic(pre_res_more, case_id, url, headers, cookies, params):
         params = Correlation().res_sub(params, token)
     if case_id == "change_price":
         params = Correlation().res_sub(params, token)
+    if case_id =="serve_confirm":
+        pet_id = str(pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"])
+        address_id = str(pre_res_more["address_list"]["body"]["data"][0]["id"])
+        time_1 = pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"]
+        params = Correlation().res_sub(params, token, pet_id, address_id, time_1)
+    if case_id == "serve_done":
+        pet_id = str(pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"])
+        address_id = str(pre_res_more["address_list"]["body"]["data"][0]["id"])
+        time_1 = pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"]
+        params = Correlation().res_sub(params, token, pet_id, address_id, time_1)
+    if case_id == "serve_order_cancel":
+        order_sn = pre_res_more["serve_done"]["body"]["data"]["order_sn"]
+        params = Correlation().res_sub(params, token, order_sn)
     if case_id == "serve_confirm_1":
         pet_id = str(pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"])
         address_id = str(pre_res_more["address_list"]["body"]["data"][1]["id"])
-        time = pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"]
-        params = Correlation().res_sub(params, token, pet_id, address_id, time)
+        time_1 = pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"]
+        params = Correlation().res_sub(params, token, pet_id, address_id, time_1)
     if case_id == "serve_confirm_2":
         pet_id = str(pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"])
-        time = str(pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"])
-        params = Correlation().res_sub(params, token, pet_id, time)
+        time_1 = str(pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"])
+        params = Correlation().res_sub(params, token, pet_id, time_1)
     if case_id == "serve_confirm_3":
         addres_id = str(pre_res_more["address_list"]["body"]["data"][1]["id"])
-        time = str(pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"])
-        params = Correlation().res_sub(params, token, addres_id, time)
+        time_1 = str(pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"])
+        params = Correlation().res_sub(params, token, addres_id, time_1)
     if case_id == "serve_confirm_4":
         pet_id = str(pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"])
         addres_id = str(pre_res_more["address_list"]["body"]["data"][1]["id"])

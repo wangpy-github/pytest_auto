@@ -67,13 +67,12 @@ class Test_Excel():
                                                          )
         allure.dynamic.description(desc)
 
-        # AssertUtil().assert_code(r["code"], expected_code=status_code)
-        # 增加断言信息
+        # 增加响应结果断言
         if r.get("verif_data_pre"):
             for verif_data_pre in r.get("verif_data_pre"):
-                AssertUtil().assert_in_body(r["body"], expected_body=verif_data_pre)
+                AssertUtil().assert_in_body(str(r["body"]), expected_body=verif_data_pre)   # TODO 添加str，已经dumps
         if except_result:
-            AssertUtil().assert_in_body(r["body"], expected_body=except_result)
+            AssertUtil().assert_in_body(str(r["body"]), expected_body=except_result)
 
 def run(case, res_more=None):
     """
