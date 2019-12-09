@@ -11,7 +11,7 @@ import allure
 from config import Conf
 from testcase.test_case_logic.case_logic import logic
 import datetime
-from common.Base import run_api
+from common.Base import run_api, zip_new_report
 
 # 1. 初始化信息，可单独定义或者写成配置文件
 case_file = get_data_path() + os.sep + ConfigYaml().get_excel_file()  # 使用绝对路径，相对路径，使用pytest会出错
@@ -143,3 +143,5 @@ if __name__ == '__main__':
     pytest.main(["-s", "test_excel_case.py", "--alluredir", report_result_path])
     # 生成测试报告
     Base.allure_report(report_result_path, report_html_path)
+    # 打包测试报告
+    new_zip_report_path = zip_new_report()

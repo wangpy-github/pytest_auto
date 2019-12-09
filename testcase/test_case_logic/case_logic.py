@@ -156,4 +156,10 @@ def logic(pre_res_more, case_id, url, headers, cookies, params):
         pet_id = str(pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"])
         addres_id = str(pre_res_more["address_list"]["body"]["data"][1]["id"])
         params = Correlation().res_sub(params, token, pet_id, addres_id)
+    if case_id == "serve_order_pay":
+        order_sn = pre_res_more["serve_done"]["body"]["data"]["order_sn"]
+        params = Correlation().res_sub(params, token, order_sn)
+        # 更改数据库数据
+        conn = init_db("db_01")
+        conn.exec("UPDATE hs_serve_order_info SET order_status=3, pay_status=1, store_id=30 WHERE order_sn={}".format(order_sn))
     return url, headers, cookies, params, verif_data_pre

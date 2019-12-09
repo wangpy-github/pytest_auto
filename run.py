@@ -2,6 +2,7 @@
 import os
 import pytest
 from common import Base
+from common.Base import zip_new_report
 from config import Conf
 import datetime
 
@@ -14,3 +15,5 @@ if __name__ == '__main__':
     pytest.main(["-s", "./testcase/test_excel_case.py", "--alluredir", report_result_path])
     # 生成测试报告
     Base.allure_report(report_result_path, report_html_path)
+    # 打包测试报告
+    new_zip_report_path = zip_new_report()

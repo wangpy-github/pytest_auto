@@ -1,4 +1,6 @@
-from config.Conf import ConfigYaml
+import os
+import zipfile
+from config.Conf import ConfigYaml, get_report_path
 from utils.MysqlUtil import Mysql
 import json
 import re
@@ -96,5 +98,29 @@ def allure_report(report_path, report_html):
     except:
         log.error("执行用例失败，请检查一下测试环境相关配置")
         raise
+
+def zip_new_report():
+    """
+    获取最新生成的测试报告路径，并把整个文件夹内的文件打包，并将zip的路径返回
+    """
+    # 1. 获取最新的测试报告路径
+    report_path = get_report_path()
+    html_path = os.path.join(report_path, "html")
+    list_report_htmls = os.listdir(html_path)
+    # 按照目录的创建时间升序排列
+    list_report_htmls.sort(key=lambda file: os.path.getmtime(os.path.join(html_path, file)))
+    new_report_path = os.path.join(html_path, list_report_htmls[-1])
+    # 2. 把整个文件夹内的文件打包
+    # target_zip_path：存放zip的目录
+    target_zip_path = os.path.join(report_path, list_report_htmls[-1]+".zip")
+    f = zipfile.ZipFile(target_zip_path, 'w', zipfile.ZIP_DEFLATED)
+    for dirpath, dirnames, filenames in os.walk(new_report_path):
+        for filename in filenames:
+            f.write(os.path.join(dirpath, filename))
+    f.close()
+    return target_zip_path
+
+
 if __name__ == '__main__':
     print(init_db("db_01"))
+    new_zip_report_path = zip_new_report()
