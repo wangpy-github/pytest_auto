@@ -4,10 +4,10 @@
 import json
 import time
 from common.Base import Correlation, init_db
-from config.Conf import ConfigYaml
+from config.Conf import Env_conf
 
 # 获取公共变量
-token = ConfigYaml().get_common_variable()["token"]
+token = Env_conf("test").get_common_variable()["token"]
 
 def logic(pre_res_more, case_id, url, headers, cookies, params):
     """

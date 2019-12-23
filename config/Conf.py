@@ -11,9 +11,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(current_path))
 _config_path = BASE_DIR + os.sep + "config"
 # 定义data目录路径
 _data_path = BASE_DIR + os.sep + "data"
-# 定义config.yml文件路径
+# 定义conf.yml文件路径
 _config_file = _config_path + os.sep + "conf.yml"
-# 定义db_config.yml文件路径
+# 定义db_conf.yml文件路径
 _db_config_file = _config_path + os.sep + "db_conf.yml"
 # 定义logs目录路径
 _log_path = BASE_DIR + os.sep + "logs"
@@ -40,15 +40,15 @@ def get_log_path():
 def get_db_config_file():
     return _db_config_file
 
+
 def get_report_path():
     return _report_path
 
-"""
-读取文件信息
-"""
-
 
 class ConfigYaml():
+    """
+    读取文件信息
+    """
     # 初始读取yaml配置文件内容
     def __init__(self):
         self.config = YamlReader(get_config_file()).data()
@@ -57,10 +57,6 @@ class ConfigYaml():
     """
     定义一些获取配置文件指定信息的方法
     """
-
-    # 获取url
-    def get_conf_url(self):
-        return self.config["BASE"]["test"]["url"]
 
     # 获取日志等级
     def get_conf_log_level(self):
@@ -74,25 +70,42 @@ class ConfigYaml():
     def get_db_config_info(self, db_alise):
         return self.db_config[db_alise]
 
+
+############获取环境信息############
+class Env_conf():
+    def __init__(self, env_alise):
+        """
+        :param env_alise: 环境别名
+        """
+        self.env_config = YamlReader(get_config_file()).data()
+        self.env_alise = env_alise
+
+    # 获取环境配置信息
+    def get_conf_url(self):
+        return self.env_config["BASE"][self.env_alise]["url"]
+
     # 获取测试用例文件的名称
     def get_excel_file(self):
-        return self.config["BASE"]["test"]["test_case_file"]
+        return self.env_config["BASE"][self.env_alise]["test_case_file"]
 
     # 定义获取excel_sheet名称
     def get_excel_sheet(self):
-        return self.config["BASE"]["test"]["case_sheet"]
+        return self.env_config["BASE"][self.env_alise]["case_sheet"]
 
     # 定义获取公共变量token的方法
     def get_common_variable(self):
-        return self.config["BASE"]["test"]["common_variable"]
+        return self.env_config["BASE"][self.env_alise]["common_variable"]
 
 
 if __name__ == '__main__':
     # print(get_config_file())
-    # print(ConfigYaml().get_conf_url())
+
+    env = Env_conf("test")
+    print(env.get_conf_url())
+    print(env.get_excel_file())
+    print(env.get_excel_sheet())
+    print(env.get_common_variable())
+
     # print(ConfigYaml().get_conf_log_level())
     # print(ConfigYaml().get_conf_log_extension())
     # print(ConfigYaml().get_db_config_info("db_01"))
-    print(ConfigYaml().get_excel_file())
-    print(ConfigYaml().get_excel_sheet())
-    print(ConfigYaml().get_common_variable())

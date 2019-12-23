@@ -1,6 +1,6 @@
 #coding=utf-8
 import os
-from config.Conf import ConfigYaml, get_data_path
+from config.Conf import get_data_path, Env_conf
 from common.ExcelData import Data
 from utils.LogUtil import my_log
 from common.ExcelConfig import DataConfig
@@ -13,9 +13,13 @@ from testcase.test_case_logic.case_logic import logic
 import datetime
 from common.Base import run_api, zip_new_report
 
+# 指定测试环境
+env = Env_conf("test")
+
 # 1. 初始化信息，可单独定义或者写成配置文件
-case_file = get_data_path() + os.sep + ConfigYaml().get_excel_file()  # 使用绝对路径，相对路径，使用pytest会出错
-sheet_name = ConfigYaml().get_excel_sheet()
+case_file = get_data_path() + os.sep + env.get_excel_file()  # 使用绝对路径，相对路径，使用pytest会出错
+sheet_name = env.get_excel_sheet()
+
 data_list = Data(case_file, sheet_name).get_run_data()  # 获取需要运行的测试用例
 log = my_log()
 data_key = DataConfig
@@ -27,7 +31,7 @@ class Test_Excel():
     # @pytest.mark.flaky(reruns=3, reruns_delay=1)  # 如果失败则延迟1s后重跑
     @pytest.mark.parametrize("case", data_list)
     def test_run(self, case):
-        url = ConfigYaml().get_conf_url() + case[data_key.url]
+        url = env.get_conf_url() + case[data_key.url]
         case_id = case[data_key.case_id]
         case_model = case[data_key.case_model]
         case_name = case[data_key.case_name]
@@ -81,7 +85,7 @@ def run(case, res_more=None):
     :param res_more: 当前用例的所有前置接口返回数据   Type：dict
     :return:
     """
-    url = ConfigYaml().get_conf_url() + case[data_key.url]
+    url = env.get_conf_url() + case[data_key.url]
     case_id = case[data_key.case_id]
     method = case[data_key.method]
     params_type = case[data_key.params_type]
