@@ -1,0 +1,12 @@
+test:
+ url: "https://test.hs.wangxuekeji.com/sites/api/?url="
+ test_case_file: "test_data.xlsx"
+ case_sheet: "用户信息"
+ common_variable:
+  token: "9401257c57b7a8deb7a81579a86dadc1a58bc3bb"
+pro:
+ url: "https://hs.wangxuekeji.com/sites/api/?url="
+ test_case_file: "test_data.xlsx"
+ case_sheet: "用户信息"
+ common_variable:
+  token: "1f398757fdae92f5b4c3fa39971e9c7b0c5bc2ab"

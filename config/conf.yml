@@ -1,17 +1,4 @@
-BASE:
- # log等级
- log_level: "debug"
- # 扩展名
- log_extension: ".log"
- test:
-  url: "https://test.hs.wangxuekeji.com/sites/api/?url="
-  test_case_file: "test_data.xlsx"
-  case_sheet: "用户信息"
-  common_variable:
-   token: "067c99769d0e81585300139b6bbcddff09b1ad28"
- pro:
-  url: "https://hs.wangxuekeji.com/sites/api/?url="
-  test_case_file: "test_data.xlsx"
-  case_sheet: "用户信息"
-  common_variable:
-   token: "067c99769d0e81585300139b6bbcddff09b1ad28"
+# log等级
+log_level: "debug"
+# 扩展名
+log_extension: ".log"
