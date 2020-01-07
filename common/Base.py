@@ -74,7 +74,8 @@ class Correlation():
     def res_sub(self, data, *args, pattern_data=r'\${(.*?)}\$'):
         """
         注意：数据的顺序不能错
-        作用：有变量就替换，没有则返回原数据
+        作用：1. 有变量就替换，没有则返回原数据
+              2. 数据格式转换：dict转为josn_str，其他则转换为str
         :param data: 将被替换的字符串
         :param args: 去替换的目标值元组
         """
@@ -82,7 +83,9 @@ class Correlation():
         re_res_list = pattern.findall(data)
         if re_res_list and len(re_res_list)!=0:
             for val in args:
-                data = re.sub(pattern_data, val, data, count=1)
+                if isinstance(val, dict):
+                    data = re.sub(pattern_data, json.dumps(val), data, count=1)
+                data = re.sub(pattern_data, str(val), data, count=1)
         return data
 
 
