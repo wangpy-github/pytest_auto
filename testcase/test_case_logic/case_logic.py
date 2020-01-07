@@ -1,7 +1,6 @@
 # import sys
 # import io
 # sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='gb18030')  # 解决编码的问题
-import json
 import time
 from common.Base import Correlation, init_db
 from config.Conf import Env_conf
@@ -28,71 +27,70 @@ def logic(pre_res_more, case_id, url, headers, cookies, params):
     # 2. 提取到有用的数据之后，去替换excel的数据
     if case_id == "goods_detail":
         params = Correlation().res_sub(params, token)
-    if case_id == "create_cart":
+    elif case_id == "create_cart":
         # 1. 取数据，组合数据
         goods_id = pre_res_more["goods_detail"]["body"]["data"]["goods_id"]
         # 2. 替换数据
         params = Correlation().res_sub(params, token, goods_id)
-    if case_id == "checkOrder":
+    elif case_id == "checkOrder":
         rec_id = pre_res_more["create_cart"]["body"]["data"]["cart_list"][0]["goods_list"][0]["rec_id"]
         params = Correlation().res_sub(params, token, rec_id)
-    if case_id == "done":
+    elif case_id == "done":
         rec_id = pre_res_more["checkOrder"]["body"]["data"]["goods_list"][0]["rec_id"]
         pay_id = pre_res_more["checkOrder"]["body"]["data"]["payment_list"][2]["pay_id"]
         shipping_id = pre_res_more["checkOrder"]["body"]["data"]["shipping_list"][0]["shipping_id"]
         params = Correlation().res_sub(params, token, rec_id, pay_id, shipping_id)
-    if case_id == "wxpay":
+    elif case_id == "wxpay":
         order_id = pre_res_more["done"]["body"]["data"]["order_id"]
         params = Correlation().res_sub(params, token, order_id)
         # 更改数据库数据
         conn = init_db("db_01")
         conn.exec("UPDATE hs_order_info SET pay_status=2 WHERE order_id={}".format(order_id))
-    if case_id == "confirm":
+    elif case_id == "confirm":
         cookie = pre_res_more["login"]["cookies"]    # dict
         order_id = pre_res_more["done"]["body"]["data"]["order_id"]  # int
         cookies = Correlation().res_sub(cookies, cookie)
         params = Correlation().res_sub(params, order_id)
-    if case_id == "ship":
+    elif case_id == "ship":
         cookie = pre_res_more["login"]["cookies"]    # dict
         order_id = pre_res_more["done"]["body"]["data"]["order_id"]  # int
         cookies = Correlation().res_sub(cookies, cookie)
         params = Correlation().res_sub(params, order_id)
-    if case_id == "goods_service_to_user":
+    elif case_id == "goods_service_to_user":
         cookie = pre_res_more["login"]["cookies"]    # dict
         order_id = pre_res_more["done"]["body"]["data"]["order_id"]  # int
         cookies = Correlation().res_sub(cookies, cookie)
         params = Correlation().res_sub(params, order_id)
-    if case_id == "affirmReceived":
-        order_id = pre_res_more["done"]["body"]["data"]["order_id"]
-        order_id = str(order_id)
-        params = Correlation().res_sub(params, token, order_id)
-    if case_id == "cancel":
+    elif case_id == "affirmReceived":
         order_id = pre_res_more["done"]["body"]["data"]["order_id"]
         params = Correlation().res_sub(params, token, order_id)
-    if case_id == "wxpay_1":
+    elif case_id == "cancel":
         order_id = pre_res_more["done"]["body"]["data"]["order_id"]
         params = Correlation().res_sub(params, token, order_id)
-    if case_id == "confirm_1":
+    elif case_id == "wxpay_1":
+        order_id = pre_res_more["done"]["body"]["data"]["order_id"]
+        params = Correlation().res_sub(params, token, order_id)
+    elif case_id == "confirm_1":
         cookie = pre_res_more["login"]["cookies"]    # dict
         order_id = pre_res_more["done"]["body"]["data"]["order_id"]  # int
         cookies = Correlation().res_sub(cookies, cookie)
         params = Correlation().res_sub(params, order_id)
-    if case_id == "ship_1":
+    elif case_id == "ship_1":
         cookie = pre_res_more["login"]["cookies"]    # dict
         order_id = pre_res_more["done"]["body"]["data"]["order_id"]  # int
         cookies = Correlation().res_sub(cookies, cookie)
         params = Correlation().res_sub(params, order_id)
-    if case_id == "goods_service_to_user_1":
+    elif case_id == "goods_service_to_user_1":
         cookie = pre_res_more["login"]["cookies"]    # dict
         order_id = pre_res_more["done"]["body"]["data"]["order_id"]  # int
         cookies = Correlation().res_sub(cookies, cookie)
         params = Correlation().res_sub(params, order_id)
-    if case_id == "integral":
+    elif case_id == "integral":
         params = Correlation().res_sub(params, token)
-    if case_id == "integral_pay":
+    elif case_id == "integral_pay":
         time.sleep(2)   # 支付过快：提示处理中，导致验证积分时断言错误
         params = Correlation().res_sub(params, token)
-    if case_id == "integral_1":
+    elif case_id == "integral_1":
         # 处理后续断言的数据
         integral = pre_res_more["integral"]["body"]["data"]["integral"]
         integral = int(integral) - 10
@@ -100,43 +98,43 @@ def logic(pre_res_more, case_id, url, headers, cookies, params):
         data_pre = "'integral': {}".format(integral)
         verif_data_pre.append(data_pre)
         params = Correlation().res_sub(params, token)
-    if case_id == "serve":
+    elif case_id == "serve":
         params = Correlation().res_sub(params, token)
-    if case_id == "address_list":
+    elif case_id == "address_list":
         params = Correlation().res_sub(params, token)
-    if case_id == "change_price":
+    elif case_id == "change_price":
         params = Correlation().res_sub(params, token)
-    if case_id =="serve_confirm":
-        pet_id = str(pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"])
-        address_id = str(pre_res_more["address_list"]["body"]["data"][0]["id"])
+    elif case_id =="serve_confirm":
+        pet_id = pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"]
+        address_id = pre_res_more["address_list"]["body"]["data"][0]["id"]
         time_1 = pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"]
         params = Correlation().res_sub(params, token, pet_id, address_id, time_1)
-    if case_id == "serve_done":
-        pet_id = str(pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"])
-        address_id = str(pre_res_more["address_list"]["body"]["data"][0]["id"])
+    elif case_id == "serve_done":
+        pet_id = pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"]
+        address_id = pre_res_more["address_list"]["body"]["data"][0]["id"]
         time_1 = pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"]
         params = Correlation().res_sub(params, token, pet_id, address_id, time_1)
-    if case_id == "serve_order_cancel":
+    elif case_id == "serve_order_cancel":
         order_sn = pre_res_more["serve_done"]["body"]["data"]["order_sn"]
         params = Correlation().res_sub(params, token, order_sn)
-    if case_id == "serve_confirm_1":
-        pet_id = str(pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"])
-        address_id = str(pre_res_more["address_list"]["body"]["data"][1]["id"])
+    elif case_id == "serve_confirm_1":
+        pet_id = pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"]
+        address_id = pre_res_more["address_list"]["body"]["data"][1]["id"]
         time_1 = pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"]
         params = Correlation().res_sub(params, token, pet_id, address_id, time_1)
-    if case_id == "serve_confirm_2":
-        pet_id = str(pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"])
-        time_1 = str(pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"])
+    elif case_id == "serve_confirm_2":
+        pet_id = pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"]
+        time_1 = pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"]
         params = Correlation().res_sub(params, token, pet_id, time_1)
-    if case_id == "serve_confirm_3":
-        addres_id = str(pre_res_more["address_list"]["body"]["data"][1]["id"])
-        time_1 = str(pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"])
+    elif case_id == "serve_confirm_3":
+        addres_id = pre_res_more["address_list"]["body"]["data"][1]["id"]
+        time_1 = pre_res_more["serve"]["body"]["data"]["time_list"][0]["date"]
         params = Correlation().res_sub(params, token, addres_id, time_1)
-    if case_id == "serve_confirm_4":
-        pet_id = str(pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"])
-        addres_id = str(pre_res_more["address_list"]["body"]["data"][1]["id"])
+    elif case_id == "serve_confirm_4":
+        pet_id = pre_res_more["serve"]["body"]["data"]["pet_list"][0]["id"]
+        addres_id = pre_res_more["address_list"]["body"]["data"][1]["id"]
         params = Correlation().res_sub(params, token, pet_id, addres_id)
-    if case_id == "serve_order_pay":
+    elif case_id == "serve_order_pay":
         order_sn = pre_res_more["serve_done"]["body"]["data"]["order_sn"]
         params = Correlation().res_sub(params, token, order_sn)
         # 更改数据库数据
