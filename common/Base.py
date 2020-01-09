@@ -49,6 +49,8 @@ def run_api(url, method, params_type, header=None, cookie=None, params=None):
             r = request.post(url, data=params, headers=header, cookies=cookie)
         elif str(params_type).lower() == "json":
             r = request.post(url, json=params, headers=header, cookies=cookie)
+        else:
+            r = request.post(url, json=params, headers=header, cookies=cookie)
     else:
         log.error("错误请求methods：", method)
     return r
