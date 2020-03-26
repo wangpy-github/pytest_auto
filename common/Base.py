@@ -43,13 +43,24 @@ def run_api(url, method, params_type, header=None, cookie=None, params=None):
     """
     request = Request()
     if str(method).lower() == "get":
-        r = request.get(url, headers=header, cookies=cookie)
+        if str(params_type).lower() == "query_string":
+            r = request.get(url, headers=header, data=params, cookies=cookie)
+        else:
+            r = request.get(url, headers=header, cookies=cookie)
     elif str(method).lower() == "post":
         if str(params_type).lower() == "form_data":
             r = request.post(url, data=params, headers=header, cookies=cookie)
         elif str(params_type).lower() == "json":
             r = request.post(url, json=params, headers=header, cookies=cookie)
-        else:
+    elif str(method).lower() == "put":
+        if str(params_type).lower() == "form_data":
+            r = request.put(url, data=params, headers=header, cookies=cookie)
+        elif str(params_type).lower() == "json":
+            r = request.post(url, json=params, headers=header, cookies=cookie)
+    elif str(method).lower() == "delete":
+        if str(params_type).lower() == "form_data":
+            r = request.post(url, data=params, headers=header, cookies=cookie)
+        elif str(params_type).lower() == "json":
             r = request.post(url, json=params, headers=header, cookies=cookie)
     else:
         log.error("错误请求methods：", method)

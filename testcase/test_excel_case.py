@@ -1,6 +1,6 @@
 #coding=utf-8
 import os
-from config.Conf import get_data_path, Env_conf
+from config.Conf import ConfigYaml, get_data_path
 from common.ExcelData import Data
 from utils.LogUtil import my_log
 from common.ExcelConfig import DataConfig
@@ -13,14 +13,18 @@ from testcase.test_case_logic.case_logic import logic
 import datetime
 from common.Base import run_api, zip_new_report
 
-# 指定测试环境
-env = Env_conf("test")
-
+"""
+测试环境信息
+"""
 # 1. 初始化信息，可单独定义或者写成配置文件
-case_file = get_data_path() + os.sep + env.get_excel_file()  # 使用绝对路径，相对路径，使用pytest会出错
-sheet_name = env.get_excel_sheet()
+conf = ConfigYaml()
+env_url = conf.get_conf_url("dev")
+env_excel_file = conf.get_excel_file("dev")
+env_excel_sheet = conf.get_excel_sheet("dev")
+case_file = get_data_path() + os.sep + env_excel_file  # 使用绝对路径，相对路径使用pytest会出错
 
-data_list = Data(case_file, sheet_name).get_run_data()  # 获取需要运行的测试用例
+# 获取需要运行的测试用例数据
+data_list = Data(case_file, env_excel_sheet).get_run_data()
 log = my_log()
 data_key = DataConfig
 request_params = dict()
@@ -31,7 +35,7 @@ class Test_Excel():
     # @pytest.mark.flaky(reruns=3, reruns_delay=1)  # 如果失败则延迟1s后重跑
     @pytest.mark.parametrize("case", data_list)
     def test_run(self, case):
-        url = env.get_conf_url() + case[data_key.url]
+        url = env_url + case[data_key.url]
         case_id = case[data_key.case_id]
         case_model = case[data_key.case_model]
         case_name = case[data_key.case_name]
@@ -42,7 +46,7 @@ class Test_Excel():
         except_result = case[data_key.except_result]
         r = call_back(case)
 
-        allure.dynamic.feature(sheet_name)
+        allure.dynamic.feature(env_excel_sheet)
         allure.dynamic.story(case_model)
         title = "{} {}".format(case_id, case_name)
         allure.dynamic.title(title)
@@ -85,7 +89,7 @@ def run(case, res_more=None):
     :param res_more: 当前用例的所有前置接口返回数据   Type：dict
     :return:
     """
-    url = env.get_conf_url() + case[data_key.url]
+    url = env_url + case[data_key.url]
     case_id = case[data_key.case_id]
     method = case[data_key.method]
     params_type = case[data_key.params_type]
@@ -123,7 +127,7 @@ def call_back(case):
     pre_execs = case[data_key.pre_exec]
     if pre_execs:
         for pre_exec in eval(pre_execs):
-            pre_case = Data(case_file, sheet_name).get_case_pre(pre_exec)
+            pre_case = Data(case_file, env_excel_sheet).get_case_pre(pre_exec)
             res = call_back(pre_case)
             res_more[pre_exec] = res
         return run(case, res_more)
