@@ -2,23 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de9ec784-c782-4e00-9c52-78ef9aab07c2" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/env_conf.yml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test_data.xlsx" afterPath="$PROJECT_DIR$/data/test_data.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/pytest_auto.iml" afterPath="$PROJECT_DIR$/.idea/pytest_auto.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/Base.py" afterPath="$PROJECT_DIR$/common/Base.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/Conf.py" afterPath="$PROJECT_DIR$/config/Conf.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcase/test_case_logic/case_logic.py" afterPath="$PROJECT_DIR$/testcase/test_case_logic/case_logic.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcase/test_excel_case.py" afterPath="$PROJECT_DIR$/testcase/test_excel_case.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/to_json_util.py" afterPath="$PROJECT_DIR$/to_json_util.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/LogUtil.py" afterPath="$PROJECT_DIR$/utils/LogUtil.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/RequestsUtil.py" afterPath="$PROJECT_DIR$/utils/RequestsUtil.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/YamlUtil.py" afterPath="$PROJECT_DIR$/utils/YamlUtil.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pytest_auto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pytest_auto.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test_data.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/test_data.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_case_logic/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_case_logic/case_logic.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_excel_case.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_info.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_user_info.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/MysqlUtil.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/MysqlUtil.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,93 +52,37 @@
     <option name="SHOW_EMPTY_GROUPS" value="false" />
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="pytest_auto" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="test_excel_case.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testcase/test_excel_case.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcase/test_case_module_login/test_excel_case_login.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2707">
-              <caret line="135" column="43" lean-forward="false" selection-start-line="135" selection-start-column="43" selection-end-line="135" selection-end-column="43" />
+            <state relative-caret-position="-783">
+              <caret line="60" column="60" selection-start-line="60" selection-start-column="60" selection-end-line="60" selection-end-column="60" />
               <folding>
-                <element signature="e#14#23#0" expanded="true" />
-                <marker date="1585235349321" expanded="true" signature="5485:5619" ph="..." />
-                <marker date="1585235349321" expanded="true" signature="5485:5646" ph="..." />
-                <marker date="1585235349321" expanded="true" signature="5647:5865" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1585235349321" expanded="true" signature="5893:6398" ph="..." />
+                <element signature="e#14#22#1" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LogUtil.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/LogUtil.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pytest.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1512">
-              <caret line="56" column="56" lean-forward="false" selection-start-line="56" selection-start-column="56" selection-end-line="56" selection-end-column="56" />
-              <folding />
+            <state relative-caret-position="189">
+              <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="case_logic.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testcase/test_case_logic/case_logic.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcase/test_case_module_login/case_logic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="31" column="32" lean-forward="false" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MysqlUtil.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/MysqlUtil.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-378">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding>
-                <marker date="1585215818000" expanded="true" signature="1343:1386" ph="select * fro... hs_order_info" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestsUtil.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/RequestsUtil.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="40" column="94" lean-forward="false" selection-start-line="40" selection-start-column="94" selection-end-line="40" selection-end-column="94" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Base.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/common/Base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="63" column="45" lean-forward="false" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="45" />
-              <folding>
-                <element signature="e#802#815#0" expanded="false" />
-                <marker date="1585237335886" expanded="true" signature="1052:2315" ph="..." />
-                <marker date="1585237335886" expanded="true" signature="2170:2250" ph="..." />
-                <marker date="1585237335886" expanded="true" signature="2339:3347" ph="..." />
-                <marker date="1585237335886" expanded="true" signature="2398:2604" ph="..." />
-                <marker date="1585237335886" expanded="true" signature="2407:2500" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1585237335886" expanded="true" signature="2638:2722" ph="..." />
-                <marker date="1585237335886" expanded="true" signature="2788:3347" ph="..." />
-                <marker date="1585237335886" expanded="true" signature="2797:2972" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1585237335886" expanded="true" signature="3107:3327" ph="..." />
-                <marker date="1585237335886" expanded="true" signature="3136:3327" ph="..." />
-                <marker date="1585237335886" expanded="true" signature="3394:3716" ph="..." />
-                <marker date="1585237335886" expanded="true" signature="3399:3426" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1585237335886" expanded="true" signature="3660:3716" ph="..." />
-                <marker date="1585237335886" expanded="true" signature="3744:3798" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1585237335886" expanded="true" signature="4138:4186" ph="..." />
-              </folding>
+            <state relative-caret-position="108">
+              <caret line="4" column="35" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -198,7 +139,6 @@
         <option value="$PROJECT_DIR$/data/test_userinfo.yml" />
         <option value="$PROJECT_DIR$/testcase/test_info.py" />
         <option value="$PROJECT_DIR$/testcase/test_user_info.py" />
-        <option value="$PROJECT_DIR$/utils/MysqlUtil.py" />
         <option value="$PROJECT_DIR$/testcase/test_excel_user_info.py" />
         <option value="C:/Program Files/Python36/Lib/genericpath.py" />
         <option value="$PROJECT_DIR$/utils/ExcelUtil.py" />
@@ -209,7 +149,6 @@
         <option value="$PROJECT_DIR$/recursive.py" />
         <option value="C:/python/Python36-32/Lib/site-packages/pipreqs/pipreqs.py" />
         <option value="$PROJECT_DIR$/a.json" />
-        <option value="$PROJECT_DIR$/pytest.ini" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/common/ExcelConfig.py" />
         <option value="$PROJECT_DIR$/utils/LogUtil.py" />
@@ -219,7 +158,6 @@
         <option value="$PROJECT_DIR$/config/env_conf" />
         <option value="$PROJECT_DIR$/utils/YamlUtil.py" />
         <option value="$PROJECT_DIR$/config/d.yml" />
-        <option value="$PROJECT_DIR$/testcase/test_excel_case.py" />
         <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/config/conf1.yml" />
         <option value="$PROJECT_DIR$/a.py" />
@@ -227,139 +165,56 @@
         <option value="$PROJECT_DIR$/config/conf.yml" />
         <option value="$PROJECT_DIR$/config/env_conf.yml" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/testcase/test_case_logic/case_logic.py" />
         <option value="$PROJECT_DIR$/to_json_util.py" />
         <option value="$PROJECT_DIR$/common/Base.py" />
+        <option value="$PROJECT_DIR$/utils/MysqlUtil.py" />
+        <option value="$PROJECT_DIR$/testcase/test_excel_case.py" />
+        <option value="$PROJECT_DIR$/testcase/test_case_logic/case_logic.py" />
+        <option value="$PROJECT_DIR$/testcase/test_case_module_login/test_excel_case.py" />
+        <option value="$PROJECT_DIR$/testcase/test_case_module_login/test_excel_case_login.py" />
+        <option value="$PROJECT_DIR$/pytest.ini" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="1938" />
     <option name="height" value="1048" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pytest_auto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pytest_auto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pytest_auto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pytest_auto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pytest_auto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pytest_auto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="testcase" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pytest_auto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pytest_auto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="report" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pytest_auto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pytest_auto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pytest_auto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pytest_auto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pytest_auto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pytest_auto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="pytest_auto" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pytest_auto" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pytest_auto" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pytest_auto" type="462c0819:PsiDirectoryNode" />
+              <item name="report" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pytest_auto" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pytest_auto" type="462c0819:PsiDirectoryNode" />
+              <item name="testcase" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pytest_auto" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pytest_auto" type="462c0819:PsiDirectoryNode" />
+              <item name="testcase" type="462c0819:PsiDirectoryNode" />
+              <item name="test_case_module_login" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -369,15 +224,16 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\王鹏远\Desktop\pytest_auto\utils" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\aaa\Desktop\pytest_auto\config" />
       <recent name="C:\Users\王鹏远\Desktop\pytest_auto\config" />
       <recent name="C:\Users\王鹏远\Desktop\pytest_auto\report" />
       <recent name="C:\Users\aaa\Desktop\pytest_auto\testcase" />
       <recent name="C:\Users\aaa\Desktop\pytest_auto\data" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\aaa\Desktop\pytest_auto\testcase\test_case_logic" />
+      <recent name="C:\Users\王鹏远\Desktop\pytest_auto\utils" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -392,8 +248,45 @@
       </list>
     </option>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
+  <component name="RunManager" selected="Python tests.pytest in test_excel_case_login.py">
+    <configuration name="pytest in C:/Users/aaa/Desktop/pytest_auto/testcase/test_info.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pytest_auto" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcase" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/testcase/test_info.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_excel_case_login.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pytest_auto" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcase" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/testcase/test_case_module_login/test_excel_case_login.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.pytest in test_excel_case_login.py" />
+        <item itemvalue="Python tests.pytest in C:/Users/aaa/Desktop/pytest_auto/testcase/test_info.py" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -437,19 +330,11 @@
       <workItem from="1578376128571" duration="380000" />
       <workItem from="1578390325729" duration="2347000" />
       <workItem from="1578575180964" duration="227000" />
+      <workItem from="1585276001754" duration="6882000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_in_test_excel_case_py - 2019.12.09 at 13h 12m 12s.xml">
-      <configuration name="pytest in test_excel_case.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test_excel_case_py - 2019.12.09 at 13h 15m 12s.xml">
-      <configuration name="pytest in test_excel_case.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test_excel_case_py - 2019.12.09 at 13h 30m 33s.xml">
-      <configuration name="pytest in test_excel_case.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="pytest_in_test_excel_case_py - 2019.12.09 at 13h 31m 13s.xml">
       <configuration name="pytest in test_excel_case.py" configurationId="tests" />
     </history-entry>
@@ -471,9 +356,18 @@
     <history-entry file="pytest_in_test_excel_case_py - 2019.12.09 at 14h 39m 14s.xml">
       <configuration name="pytest in test_excel_case.py" configurationId="tests" />
     </history-entry>
+    <history-entry file="pytest_in_test_info_py - 2020.03.27 at 10h 42m 40s.xml">
+      <configuration name="pytest in test_info.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_info_py - 2020.03.27 at 10h 43m 12s.xml">
+      <configuration name="pytest in test_info.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_excel_case_py - 2020.03.27 at 12h 38m 24s.xml">
+      <configuration name="pytest in test_excel_case.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="245839000" />
+    <option name="totallyTimeSpent" value="252721000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -488,26 +382,32 @@
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18562232" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22423556" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33975086" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20713525" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32932165" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3916849" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2866521" />
+      <window_info anchor="bottom" id="Python Console" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="SciView" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Data View" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -534,15 +434,24 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="2" />
-    </breakpoint-manager>
-    <watches-manager />
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pytest_auto$ExcelData.coverage" NAME="ExcelData Coverage Results" MODIFIED="1573448147846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/common" />
+    <SUITE FILE_PATH="coverage/pytest_auto$pytest_in_test_info_py.coverage" NAME="pytest in test_info.py Coverage Results" MODIFIED="1585276991760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testcase" />
     <SUITE FILE_PATH="coverage/pytest_auto$RequestsUtil.coverage" NAME="RequestsUtil Coverage Results" MODIFIED="1573110488088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/pytest_auto$test_a_py.coverage" NAME="test_a.py Coverage Results" MODIFIED="1573119561137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testcase" />
     <SUITE FILE_PATH="coverage/pytest_auto$MysqlUtil.coverage" NAME="MysqlUtil Coverage Results" MODIFIED="1575520101187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
@@ -553,7 +462,7 @@
     <SUITE FILE_PATH="coverage/pytest_auto$a.coverage" NAME="a Coverage Results" MODIFIED="1577243983805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pytest_auto$test_a.coverage" NAME="test_a Coverage Results" MODIFIED="1573116514739" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testcase" />
     <SUITE FILE_PATH="coverage/pytest_auto$run_py.coverage" NAME="run.py Coverage Results" MODIFIED="1575873472548" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/pytest_auto$pytest_in_test_excel_case_py.coverage" NAME="pytest in test_excel_case.py Coverage Results" MODIFIED="1575873554518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pytest_auto$pytest_in_test_excel_case_py.coverage" NAME="pytest in test_excel_case.py Coverage Results" MODIFIED="1585283904401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testcase" />
     <SUITE FILE_PATH="coverage/pytest_auto$test_info.coverage" NAME="test_info Coverage Results" MODIFIED="1572923947768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testcase" />
     <SUITE FILE_PATH="coverage/pytest_auto$Conf.coverage" NAME="Conf Coverage Results" MODIFIED="1577244316964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/config" />
     <SUITE FILE_PATH="coverage/pytest_auto$a__1_.coverage" NAME="a (1) Coverage Results" MODIFIED="1573106844218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -567,39 +476,6 @@
     <SUITE FILE_PATH="coverage/pytest_auto$run.coverage" NAME="run Coverage Results" MODIFIED="1577244688665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/common/Base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="729">
-          <caret line="54" column="38" lean-forward="false" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
-          <folding>
-            <element signature="e#802#815#0" expanded="false" />
-            <marker date="1585237335886" expanded="true" signature="1052:2315" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="2170:2250" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="2339:3347" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="2398:2604" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="2407:2500" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1585237335886" expanded="true" signature="2638:2722" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="2788:3347" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="2797:2972" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1585237335886" expanded="true" signature="3107:3327" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="3136:3327" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="3394:3716" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="3399:3426" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1585237335886" expanded="true" signature="3660:3716" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="3744:3798" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1585237335886" expanded="true" signature="4138:4186" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python/Python36/Lib/site-packages/_pytest/config/__init__.py" />
     <entry file="file://C:/Python/Python36/Lib/site-packages/_pytest/main.py" />
     <entry file="file://$PROJECT_DIR$/report/result/Thursday-2019-11-28#23-57-20/4cdeb593-96fa-42d1-b5a7-1a1e99e2e604-attachment.txt" />
@@ -615,18 +491,11 @@
     <entry file="file://$PROJECT_DIR$/report/Monday-2019-12-02#09-52-34.html" />
     <entry file="file://$PROJECT_DIR$/report/Monday-2019-12-02#09-53-21.html" />
     <entry file="file://$PROJECT_DIR$/report/Monday-2019-12-02#10-42-19.html" />
-    <entry file="file://$PROJECT_DIR$/testcase/test_info.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/python/Python36-32/Lib/site-packages/_pytest/logging.py" />
     <entry file="file://$PROJECT_DIR$/common/ExcelConfig.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="15" column="10" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="10" />
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -637,9 +506,9 @@
     <entry file="file://$PROJECT_DIR$/common/ExcelData.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
-          <caret line="18" column="23" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="23" />
+          <caret line="18" column="23" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="23" />
           <folding>
-            <element signature="e#0#39#0" expanded="false" />
+            <element signature="e#0#39#0" />
           </folding>
         </state>
       </provider>
@@ -647,77 +516,43 @@
     <entry file="file://$PROJECT_DIR$/utils/AssertUtil.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
-          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="16" selection-end-column="39" />
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="16" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/ExcelUtil.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1026">
-          <caret line="40" column="42" lean-forward="false" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
+          <caret line="40" column="42" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/env_conf" />
-    <entry file="file://$PROJECT_DIR$/testcase/test_user_info.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/test_userinfo.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://C:/Python/Python36/Lib/site-packages/yaml/reader.py" />
     <entry file="file://$PROJECT_DIR$/config/d.yml" />
     <entry file="file://$PROJECT_DIR$/a.py" />
-    <entry file="file://$PROJECT_DIR$/utils/YamlUtil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/Conf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="75" column="39" lean-forward="false" selection-start-line="75" selection-start-column="39" selection-end-line="75" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/python/Python36-32/Lib/site-packages/urllib3/connectionpool.py" />
     <entry file="file://$PROJECT_DIR$/config/conf.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
-          <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/LogUtil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1512">
-          <caret line="56" column="56" lean-forward="false" selection-start-line="56" selection-start-column="56" selection-end-line="56" selection-end-column="56" />
-          <folding />
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/db_conf.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
-          <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/env_conf.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="5" column="50" lean-forward="false" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
+          <caret line="5" column="50" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -732,94 +567,116 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
-          <caret line="53" column="5" lean-forward="false" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/json_data.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="30" lean-forward="true" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/to_json_util.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pytest.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" column="28" lean-forward="false" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcase/test_excel_case.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2707">
-          <caret line="135" column="43" lean-forward="false" selection-start-line="135" selection-start-column="43" selection-end-line="135" selection-end-column="43" />
-          <folding>
-            <element signature="e#14#23#0" expanded="true" />
-            <marker date="1585235349321" expanded="true" signature="5485:5619" ph="..." />
-            <marker date="1585235349321" expanded="true" signature="5485:5646" ph="..." />
-            <marker date="1585235349321" expanded="true" signature="5647:5865" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1585235349321" expanded="true" signature="5893:6398" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcase/test_case_logic/case_logic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="31" column="32" lean-forward="false" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/MysqlUtil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-378">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <marker date="1585215818000" expanded="true" signature="1343:1386" ph="select * fro... hs_order_info" />
-          </folding>
+          <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/RequestsUtil.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
-          <caret line="40" column="94" lean-forward="false" selection-start-line="40" selection-start-column="94" selection-end-line="40" selection-end-column="94" />
-          <folding />
+          <caret line="39" column="48" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/LogUtil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-54">
+          <caret line="56" column="56" selection-start-line="56" selection-start-column="56" selection-end-line="56" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/2020-03-27.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/test_user_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="23" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/test_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/json_data.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/MysqlUtil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-810">
+          <folding>
+            <element signature="e#0#461#1" />
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/to_json_util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/YamlUtil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/common/Base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="63" column="45" lean-forward="false" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="45" />
+        <state relative-caret-position="2970">
+          <caret line="122" column="35" selection-start-line="122" selection-start-column="35" selection-end-line="122" selection-end-column="35" />
           <folding>
-            <element signature="e#802#815#0" expanded="false" />
-            <marker date="1585237335886" expanded="true" signature="1052:2315" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="2170:2250" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="2339:3347" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="2398:2604" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="2407:2500" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1585237335886" expanded="true" signature="2638:2722" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="2788:3347" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="2797:2972" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1585237335886" expanded="true" signature="3107:3327" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="3136:3327" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="3394:3716" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="3399:3426" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1585237335886" expanded="true" signature="3660:3716" ph="..." />
-            <marker date="1585237335886" expanded="true" signature="3744:3798" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1585237335886" expanded="true" signature="4138:4186" ph="..." />
+            <element signature="e#802#815#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/Conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1998">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/test_case_module_login/case_logic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" column="35" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/test_case_module_login/test_excel_case_login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-783">
+          <caret line="60" column="60" selection-start-line="60" selection-start-column="60" selection-end-line="60" selection-end-column="60" />
+          <folding>
+            <element signature="e#14#22#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pytest.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
         </state>
       </provider>
     </entry>

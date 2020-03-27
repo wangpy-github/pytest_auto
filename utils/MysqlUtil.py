@@ -1,3 +1,29 @@
+"""
+PyMySQL安装:pip3 install pymysql
+使用：
+    # 导入pymysql模块
+    import pymysql
+    # 连接database
+    conn = pymysql.connect(
+    host=“数据库地址”,
+    user=“用户名”,
+    password=“密码”,
+    database=“数据库名”,
+    charset=“utf8”)
+    # 获取执行SQL语句的光标对象
+    cursor = conn.cursor() # 结果集默认以元组显示
+    # 获取执行SQL语句，结果作为字典返回
+    #cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+    # 定义要执行的SQL语句
+    sql = "select username,password from tb_users"
+    # 执行SQL语句
+    cursor.execute(sql)
+    # 执行
+    cursor.fetchone()
+    # 关闭光标对象
+    cursor.close()
+    # 关闭数据库连接
+"""
 import pymysql
 from utils.LogUtil import my_log
 

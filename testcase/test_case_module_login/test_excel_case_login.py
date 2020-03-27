@@ -1,4 +1,53 @@
 #coding=utf-8
+"""
+安装pytest：pip3 install -U pytest
+检查版本：pytest --version
+
+执行方式：
+    命令行执行： pytest -s test_sample.py
+    主函数执行：pytest.main(["-s", "test_sample.py"])
+    pytest参数：
+        -s 表示支持控制台打印，如果不加，print 不会出现任何内容
+        -q 安静模式，不打印信息
+函数级别方法： setup 和 teardown
+类级别方法： setup_class 和 teardown_class
+
+插件：
+    测试报告插件： pip3 install pytest-html
+    失败重试插件：pip3 install pytest-rerunfailures
+
+配置文件pytest.ini：
+    addopts = -s --html=report/report.html --reruns 3
+    addopts = -s 当前目录下的scripts文件夹 -可自定义
+    testpaths = testcase 当前目录下的scripts文件夹下，以test_开头，以.py结尾的所有文件 -可自定义
+    python_files = test_*.py  当前目录下的scripts文件夹下，以test_开头，以.py结尾的所有文件中，以Test_开头的类 -可自定义
+    python_classes = Test_*  当前目录下的scripts文件夹下，以test_开头，以.py结尾的所有文件中，以Test_开头的类内
+    python_functions = test_*  以test_开头的方法 -可自定义
+
+pytest数据参数化：
+    一个参数使用：
+        @pytest.mark.parametrize("name", ["xiaoming", "xiaohong"])
+    多个参数使用：
+        @pytest.mark.parametrize(("username", "password"), [("zhangsan","zhangsan123"),("xiaoming", "xiaoming123")])
+        @pytest.mark.parametrize("username,password", [("zhangsan","zhangsan123"),("xiaoming", "xiaoming123")])
+
+pytest断言：
+    assert xx 判断xx为真
+    assert not xx 判断xx不为真
+    assert a in b 判断b包含a
+    assert a == b 判断a等于b
+    assert a != b 判断a不等于b
+
+Allure：
+    安装：
+        安装python插件  pip3 install allure-pytest
+        安装allure : 前置条件已部署java环境
+    # 添加行参数
+        addopts = -s --alluredir ./report/result  使用allure生成测试结果
+    生成HTML命令：
+        allure generate report/result -o report/html --clean
+"""
+
 import os
 from config.Conf import ConfigYaml, get_data_path
 from common.ExcelData import Data
@@ -9,7 +58,7 @@ from utils.AssertUtil import AssertUtil
 from common import Base
 import allure
 from config import Conf
-from testcase.test_case_logic.case_logic import logic
+from testcase.test_case_module_login.case_logic import logic
 import datetime
 from common.Base import run_api, zip_new_report
 
@@ -148,7 +197,7 @@ if __name__ == '__main__':
     report_result_path = Conf.get_report_path() + os.sep + "result" + os.sep + current_time
     report_html_path = Conf.get_report_path() + os.sep + "html" + os.sep + current_time
     # 执行测试用例
-    pytest.main(["-s", "test_excel_case.py", "--alluredir", report_result_path])
+    pytest.main(["-s", "test_excel_case_login.py", "--alluredir", report_result_path])
     # 生成测试报告
     Base.allure_report(report_result_path, report_html_path)
     # 打包测试报告
