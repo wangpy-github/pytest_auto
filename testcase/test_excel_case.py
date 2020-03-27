@@ -1,4 +1,88 @@
 #coding=utf-8
+"""
+https://www.cnblogs.com/fengf233/p/11799619.html#autoid-5-0-0
+unittest使用：
+核心：
+    1. TestCase
+    2. TestSuite 测试套件：多条测试用例集合在一起执行，就是一个TestSuite
+    3. TestRunner 是一个用于执行和输出测试结果的组件
+    4. TestLoader
+    5. Fixture
+
+import  unittest
+class Test_XX(unittest.TestCase):
+    def test_xxx(self, case):
+        print("abc")
+    def test_XXX(self, case):
+        print("bcd")
+
+管理用例：
+    方式1. 通过addTest()的方式
+        # 1. 实例化测试套件
+        suite = unittest.TestSuite()
+        # 2. 添加用例到套件，ClassName：为类名；MethodName：为方法名  --> suite.addTest(ClassName("MethodName"))
+        suite.addTest(Test_XX("test_xxx"))
+        suite.addTest(Test_XX("test_XXX"))
+        # 3. 实例化TextTestRunner，并执行测试套件
+        runner  =  unittest.TextTestRunner()
+        runner.run(suite)
+
+    方式2. 通过TestLoader()方式组织TestSuite，此用法可以同时测试多个类
+        test_loader = unittest.TestLoader()
+        suite1 = test_loader.loadTestsFromTestCase(ClassName1)
+        suite2 = test_loader.loadTestsFromTestCase(ClassName2)
+        suite = unittest.TestSuite([suite1, suite2])
+        unittest.TextTestRunner().run(suite)
+
+    方式3. 统一管理测试用例执行，可以管理某一个文件下的测试用例
+        discover = unittest.defaultTestLoader.discover(test_dir, pattern='test*.py',top_level_dir=None)
+            注意：discover()方法中的start_dir只能加载当前目录下的.py文件，如果加载子目录下的.py文件，需在每个子目录下放一个_init_.py文件。
+            start_dir：要测试的模块名或测试用例目录路径
+            pattern='test*.py'：表示用例文件名的匹配原则
+            top_level_dir=None：测试模块的顶层目录，如果没有顶层目录，默认为None
+        使用：
+            discover_suite = unittest.defaultTestLoader.discover(test_dir, pattern='test*.py')
+            runner = unittest.TextTestRunner()
+            runner.run(discover_suite)
+
+
+跳过用例和预期失败
+    unittest.skip(reason):无条件的跳过装饰的测试，说明跳过测试的原因
+    unittest.skipIf(condition,reason)：跳过装饰的测试，如果条件为真。
+    unittest.skipUnless(condition,reason):跳过装饰的测试，除非条件为真。
+    unittest.expectedFailure():测试标记为失败，不管执行结果是否失败，统一标记为失败，但不会抛出错误信息。
+
+
+执行顺序
+    unittest框架默认根据ASCII码的顺序加载测试用例，数字与字母的顺序为：0-9，A-Z,a-z。所以上文测试方法test_isupper()会比test_upper()先执行
+    同理测试类以及测试文件也是按照这个顺序执行，但如果你使用addTest()的方式添加了测试，会按照添加的顺序执行
+
+
+HTMLTestRunner输出测试报告
+    python2时期的产物，现在python3需要修改其内容才能用
+    使用：
+        testsuite = unittest.TestSuite()
+        testsuite.addTest(ClassName("MethodName"))
+        fp = open('./result.html', 'wb')
+        runner = HTMLTestRunner(stream=fp, title='测试报告', description='测试执行情况')
+        runner.run(testsuite)
+        fp.close()
+
+
+命令行运行：
+    #运行测试文件
+    python -m unittest test_module
+    #测试单个测试类
+    python -m unittest test_module.test_class
+    #测试多个测试类
+    python -m unittest test_module.test_class test_module2.test_class2
+    #通配符匹配测试文件执行
+    python -m unittest -p test*.py
+    #显示详细信息
+    python -m unittest -v test_module
+    #帮助
+    python -m unittest -h
+"""
 import os
 import unittest
 from pprint import pprint
