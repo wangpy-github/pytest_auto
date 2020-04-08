@@ -12,7 +12,7 @@ if __name__ == '__main__':
     report_result_path = Conf.get_report_path() + os.sep + "result" + os.sep + current_time
     report_html_path = Conf.get_report_path() + os.sep + "html" + os.sep + current_time
     # 执行测试用例
-    pytest.main(["-s", "./testcase/test_excel_case_login.py", "--alluredir", report_result_path])
+    pytest.main(["-s", "./testcase/test_case_module_login/test_feed_login.py", "--alluredir", report_result_path])
     # 生成测试报告
     Base.allure_report(report_result_path, report_html_path)
     # 打包测试报告

@@ -1,12 +1,18 @@
 dev:
  url: "http://dev.toys.59api.com"
- test_case_file: "test_data.xlsx"
- case_sheet: "帖子"
+ test_case_file:
+  test_data.xlsx: "test_data.xlsx"
+  test_data1.xlsx: "test_data1.xlsx"
+ case_sheet:
+  帖子: "帖子"
+  用户信息: "用户信息"
  common_variable:
 
-test:
+feed_dev:
  url: "https://test.hs.wangxuekeji.com/sites/api/?url="
- test_case_file: "test_data.xlsx"
- case_sheet: 用户
+ test_case_file:
+  test_data.xlsx: "test_data.xlsx"
+ case_sheet:
+  用户信息: "用户信息"
  common_variable:
   token: "9401257c57b7a8deb7a81579a86dadc1a58bc3bb"

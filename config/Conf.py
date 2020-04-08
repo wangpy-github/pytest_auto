@@ -92,5 +92,5 @@ class ConfigYaml():
 
 
 if __name__ == '__main__':
-    a = ConfigYaml().get_common_variable("dev")
+    a = ConfigYaml().get_excel_file("dev")
     print(a)
