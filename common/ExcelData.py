@@ -27,7 +27,7 @@ class Data():
         """
         case_all_list = self.reader.data()
         for line in case_all_list:
-            if pre in dict(line).values():
+            if pre == line.get("用例ID"):
                 return line
         return None
 
