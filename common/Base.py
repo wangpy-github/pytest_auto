@@ -29,11 +29,13 @@ def init_db(db_alise):
 
 # 格式化字符串,转换为dict
 def json_parse(data):
-    # if headers:
-    #     header = json.loads(headers)
-    # else:
-    #     header = headers
-    return json.loads(data) if data else data
+    if data:
+        try:
+            data = json.loads(data)
+        except Exception as e:
+            log.error("参数格式不对", e)
+            raise
+    return data
 
 data_key = DataConfig
 log = Log()
@@ -92,13 +94,14 @@ class Correlation():
         :param data: 将被替换的字符串
         :param args: 去替换的目标值元组
         """
-        pattern = re.compile(pattern_data)
-        re_res_list = pattern.findall(data)
-        if re_res_list and len(re_res_list)!=0:
-            for val in args:
-                if isinstance(val, dict):
-                    data = re.sub(pattern_data, json.dumps(val), data, count=1)
-                data = re.sub(pattern_data, str(val), data, count=1)
+        if "${" in data:
+            pattern = re.compile(pattern_data)
+            re_res_list = pattern.findall(data)
+            if re_res_list and len(re_res_list)!=0:
+                for val in args:
+                    if isinstance(val, dict):
+                        data = re.sub(pattern_data, json.dumps(val), data, count=1)
+                    data = re.sub(pattern_data, str(val), data, count=1)
         return data
 
 

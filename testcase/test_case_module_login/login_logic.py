@@ -17,8 +17,10 @@ def logic(pre_res_more, case_id, url, headers, cookies, params):
     :param params: excel读取的params
     :return: 
     """
-    # 期望结果列表
-    verif_data_pre = []
+
+    verif_data_pre = []   # 期望接口返回结果列表
+    verif_db = []         # 期望数据库查询到的结果列表
+
     # 1. 根据前置条件提取需要的数据，可能有多个用例都是url中有参数，提取数据逻辑不一致，进行异常捕捉
     # 2. 提取到有用的数据之后，去替换excel的数据
     if case_id == "login":
@@ -69,4 +71,4 @@ def logic(pre_res_more, case_id, url, headers, cookies, params):
         conn = init_db("db_01")
         conn.exec("UPDATE hs_serve_order_info SET order_status=3, pay_status=1, store_id=30 WHERE order_sn={}".format(
             order_sn))
-    return url, headers, cookies, params, verif_data_pre
+    return url, headers, cookies, params, verif_data_pre, verif_db

@@ -59,7 +59,6 @@ from utils.AssertUtil import AssertUtil
 import allure
 
 data_key = DataConfig
-request_params = dict()
 res_more = dict()
 
 
@@ -79,6 +78,7 @@ class Base_Excel_Test():
         headers = case[data_key.headers]
         cookies = case[data_key.cookies]
         except_result = case[data_key.except_result]
+        except_db = case[data_key.db_verify]
         r = self.call_back(case)
 
         allure.dynamic.feature(self.env_excel_sheet)
@@ -97,25 +97,39 @@ class Base_Excel_Test():
                "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
                "<font color='red'>响应时间:</font>{}秒<Br/>" \
                "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
+               "<font color='red'>代码期望db结果:</font>{}<Br/>" \
+               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
+               "<font color='red'>excel期望db结果:</font>{}<Br/>" \
+               "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
                "<font color='red'>期望结果:</font>{}<Br/>" \
                "<hr style='height:1px;border:none;border-top:1px dotted #185598;'/> " \
                "<font color='red'>实际结果:</font>{}".format(
-            request_params.get("url", url),
-            method,
-            request_params.get("headers") if request_params.get("headers") else headers,
-            request_params.get("cookies") if request_params.get("cookies") else cookies,
-            request_params.get("params") if request_params.get("params") else params,
+            r.get("requests_url", url),
+            method if method else None,
+            r.get("requests_headers") if r.get("requests_headers") else headers,
+            r.get("requests_cookies") if r.get("requests_cookies") else cookies,
+            r.get("requests_params") if r.get("requests_params") else params,
             r.get("total_seconds", None),
-            r.get("verif_data_pre") if r.get("verif_data_pre") else except_result,
+            r.get("verif_db", None),  # 代码中期望的db结果
+            except_db if except_db else None,  # excel中期望的结果
+            r.get("verif_data_pre") if r.get("verif_data_pre") else except_result,  # allure优先展示代码中的接口返回期望结果
             r.get("body", None))
         allure.dynamic.description(desc)
 
-        # 增加响应结果断言
+        """
+        增加响应结果的断言及数据库数据的断言
+        1. 断言代码中list中每一个是否 in body
+        2. 断言excel中期望结果是否 in body
+        3. 断言代码中list中每一个是否 in excel的期望db数据
+        """
         if r.get("verif_data_pre"):
             for verif_data_pre in r.get("verif_data_pre"):
-                AssertUtil().assert_in_body(str(r["body"]), expected_body=verif_data_pre)  # TODO 添加str，已经dumps
+                AssertUtil().assert_in_body(str(r["body"]), expected_body=str(verif_data_pre))  # TODO 添加str，已经dumps
         if except_result:
             AssertUtil().assert_in_body(str(r["body"]), expected_body=except_result)
+        if r.get("verif_db") and except_db:
+            for verif_db in r.get("verif_db"):
+                AssertUtil().assert_in_body(except_db, expected_body=str(verif_db))
 
     def call_back(self, case):
         pre_execs = case[data_key.pre_exec]
